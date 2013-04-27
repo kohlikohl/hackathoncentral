@@ -11,6 +11,7 @@ app.engine('html', hoganExpress);
 
 //routes
 app.get('/', require('./controllers/index').homepage);
+app.get('/persona/:persona', require('./controllers/index').persona);
 app.use(express.static(__dirname + '/../public')); //public folder
 
 app.listen(3000);
