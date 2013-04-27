@@ -1,10 +1,13 @@
 body {
-    background-color: #FFFF00;
+    background-: #111013;
+    background: url(../img/bg.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 html, body {
-    margin: 0;
-    padding: 0;
     height: 100%;
 }
 
@@ -13,12 +16,34 @@ html, body {
     height: 100%;
 }
 
-.select-personas{
-    margin: 0 auto;
+
+/* ==========================================================================
+   Select personas
+   ========================================================================== */
+
+.select-personas {
+    margin: auto;
+    padding: 2em 0;
     height: 200px;
-    width: 200px;
-    background-color: #fff;
+    width: 90%;
+    max-width: 250px;
     position: absolute;
-    top: 40%;
-    left: 40%;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.select-personas a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: .75em 1.5em .55em;
+    margin-bottom: 1px;
+    background-color: #137757;
+}
+
+.select-personas a:hover
+{
+    background-color: #18976f;
 }
