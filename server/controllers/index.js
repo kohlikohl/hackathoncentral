@@ -1,9 +1,11 @@
-var data = require("../library/data.js");
+var Data = require("../library/data.js");
 
 var IndexController = module.exports = {};
 
 IndexController.homepage = function(req,res) {
-    data.getPersonas();
+    var dataObject = new Data('1');
+    var personas = dataObject.getPersonas();
+    res.render("index", {"personas" : personas });
 }
 
 IndexController.persona = function(req,res) {
