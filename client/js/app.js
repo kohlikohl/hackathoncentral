@@ -17,6 +17,7 @@ goog.scope(function(){
 
     _.Main.prototype.initialise = function () {
         this.initialiseMap();
+        this.bindStartScreen();
     };
 
     _.Main.prototype.initialiseMap = function () {
@@ -27,6 +28,10 @@ goog.scope(function(){
                 styles: app.map.styles
             },
             map = new google.maps.Map(goog.dom.getElementByClass('js-map-canvas'), mapOptions);
+
+    };
+
+    _.Main.prototype.bindStartScreen = function(){
 
     };
 
