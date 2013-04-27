@@ -15,19 +15,20 @@ goog.scope(function () {
         var data = app.data.london.boroughs.folder;
 
         goog.array.forEach(data, function(element){
+            console.log('a');
             var polygon = element.polygon,
                 coords = [],
                 toDraw = {};
 
             goog.array.forEach(polygon, function(element){
-                goog.array.insert(coords, new google.maps.LatLng(element.x, element.y));
+                goog.array.insert(coords, new google.maps.LatLng(element.y, element.x));
             });
 
             toDraw = new google.maps.Polygon({
                 paths: coords,
                 strokeColor: '#FF0000',
-                strokeOpacity: 0.8,
-                strokeWeight: 3,
+                strokeOpacity: 0.5,
+                strokeWeight: 1,
                 fillColor: '#FF0000',
                 fillOpacity: 0.35
             });
@@ -35,23 +36,7 @@ goog.scope(function () {
             toDraw.setMap(this.map);
 
             return;
-        });
+        }, this);
 
-//        var triangleCoords = [
-//            new google.maps.LatLng(25.774252, -80.190262),
-//            new google.maps.LatLng(18.466465, -66.118292),
-//            new google.maps.LatLng(32.321384, -64.75737)
-//        ];
-//
-//        bermudaTriangle = new google.maps.Polygon({
-//            paths: triangleCoords,
-//            strokeColor: '#FF0000',
-//            strokeOpacity: 0.8,
-//            strokeWeight: 3,
-//            fillColor: '#FF0000',
-//            fillOpacity: 0.35
-//        });
-//
-//        bermudaTriangle.setMap(map);
     };
 });

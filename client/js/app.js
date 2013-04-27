@@ -35,7 +35,8 @@ goog.scope(function(){
                 zoom: 10,
                 center: new google.maps.LatLng(51.509597,-0.113983),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles: app.map.styles
+                styles: app.map.styles,
+                scrollwheel: false
         };
 
         this.map = new google.maps.Map(goog.dom.getElementByClass('js-map-canvas'), mapOptions);
