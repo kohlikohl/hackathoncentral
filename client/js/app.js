@@ -15,6 +15,7 @@ goog.scope(function(){
 
     _.Main = function () {
         goog.base(this);
+        this.map = {};
     };
 
     goog.inherits(_.Main, goog.events.EventTarget);
@@ -23,7 +24,7 @@ goog.scope(function(){
     _.Main.prototype.initialise = function () {
         this.initialiseMap();
         this.startscreen = new _.StartScreen();
-        this.overviewScreen = new _.OverviewScreen();
+        this.overviewScreen = new _.OverviewScreen(this.map);
         this.handler = new goog.events.EventHandler();
 
         this.handler.listen(this.startscreen, _.events.EventType.PERSONA_CLICKED, goog.bind(this.loadPersonaData, this));
@@ -35,13 +36,18 @@ goog.scope(function(){
                 center: new google.maps.LatLng(51.509597,-0.113983),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 styles: app.map.styles
-            },
-            map = new google.maps.Map(goog.dom.getElementByClass('js-map-canvas'), mapOptions);
+        };
+
+        this.map = new google.maps.Map(goog.dom.getElementByClass('js-map-canvas'), mapOptions);
 
     };
 
     _.Main.prototype.loadPersonaData = function(evt){
         goog.net.XhrIo.send('/persona/' + evt.persona, goog.bind(this.overviewScreen.display, this.overviewScreen));
+    };
+
+    _.Main.prototype.getMap = function () {
+        return this.map;
     };
 
     goog.exportSymbol('app.start', _.Main.getInstance().initialise.bind(_.Main.getInstance()));
