@@ -1,5 +1,7 @@
 goog.provide("app.Main");
 
+goog.require("app.StartScreen");
+
 goog.require("app.map.styles");
 goog.require("goog.dom");
 goog.require("goog.events.EventTarget");
@@ -17,7 +19,7 @@ goog.scope(function(){
 
     _.Main.prototype.initialise = function () {
         this.initialiseMap();
-        this.bindStartScreen();
+        this.startscreen = new _.StartScreen();
     };
 
     _.Main.prototype.initialiseMap = function () {
