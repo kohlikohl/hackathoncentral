@@ -1,0 +1,83 @@
+{
+    "personas": [ 
+        {
+            "name": "Student",
+            "weighting": 
+            {
+                "crime" : 0.6,
+                "pollution": 0.2,
+                "employment": 0.4,
+                "income": 0.7
+            }
+        },
+        {
+            "name": "Young Professional",
+            "weighting": 
+            {
+                "crime" : 1,
+                "pollution": 0.1,
+                "employment": 0.7,
+                "income": 1.0
+            }
+        },
+        {
+            "name": "Family",
+            "weighting": 
+            {
+                "crime" : 1,
+                "pollution": 0.1,
+                "employment": 0.7,
+                "income": 1.0
+            }
+        },
+        {
+            "name": "Retired",
+            "weighting": 
+            {
+                "crime" : 1,
+                "pollution": 0.1,
+                "employment": 0.7,
+                "income": 1.0
+            }
+        },
+        {
+            "name": "OAP",
+            "weighting": 
+            {
+                "crime" : 1,
+                "pollution": 0.1,
+                "employment": 0.7,
+                "income": 1.0
+            }
+        }
+    ],
+    "datasets": [
+        {
+            "name":"crime",
+            "sources": [
+                {
+                    "name" : "Buglary in a dwelling (per 1000)",
+                    "urn" : "http://production.webservices.esd.org.uk/InformPlus/data?query1.metricType=80&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=9SdwgfP4502zHO9JOntj3UfamQ0="
+                }
+            ]
+        },
+        {
+            "name": "pollution",
+            "sources": [
+                {
+                    "name" : "CO2 total emissions",
+                    "urn" : "http://production.webservices.esd.org.uk/InformPlus/data?query1.metricType=440&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=iJDpoVB00ZMELFdb9zxq5wDLQx0="
+                }
+            ]
+        },
+        {
+            "name": "employment",
+            "sources": [
+                {
+                    "name" : "Total employment rate",
+                    "urn" : "http://production.webservices.esd.org.uk/InformPlus/data?query1.metricType=49&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=G8iwcFd256aeLMsAzCYk6w0eIPA="
+                }
+            ]
+        }
+    ]
+}
