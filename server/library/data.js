@@ -16,30 +16,28 @@ Data.prototype.getDataSets = function() {
 };
 
 Data.prototype.getPersona = function() {
-    this.loadDataset("pollution");
+    this.loadDatasets();
 }
 
-Data.prototype.loadDataset = function(name) {
-    var i = j = 0,options = {};
-    for (i = 0; i < config.datasets.length; i++) {
-        if (config.datasets[i].name === name) {
-            console.log("Getting dataset for " + name);
-            for (j = 0; j < config.datasets[i].sources.length; j++) {
-                console.log(config.datasets[i].sources[j].name);
-                http.request(config.datasets[i].sources[j].urn, function(response) {
-                    console.log('STATUS: ' + response.statusCode);
-                    console.log('HEADERS: ' + JSON.stringify(response.headers));
-                    response.setEncoding('utf8');
-                    response.on('data', function (chunk) {
-                        console.log('BODY: ' + chunk);
-                    });
-                });
-                
-            }
-            return true;
-        }
+Data.prototype.loadDataset = function (dataset) {
+    var i =0;
+    console.log("Getting dataset for " + dataset.name);
+    for (i = 0; i < dataset.sources.length; i++) {
+        console.log(dataset.sources[i].urn);
+        req = http.request(dataset.sources[i].urn, function (res) {
+            console.log("DONE");
+            console.log( "STATUS " + res.statusCode);
+        });
+        req.on('error', function(e) {
+            console.log('problem with request: ' + e.message);
+        });
     }
+}
 
-    return false;
+Data.prototype.loadDatasets = function(name) {
+    var i = 0;
+    for (i = 0; i < config.datasets.length; i++) {
+            this.loadDataset(config.datasets[i]);
+    }
 };
 
