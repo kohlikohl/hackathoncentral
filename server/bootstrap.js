@@ -10,7 +10,7 @@ app.set('partials', {head: "layout/head"}); //partails using by default on all p
 app.engine('html', hoganExpress);
 
 //routes
-app.get('/', require('./controllers/index'));
+app.get('/', require('./controllers/index').homepage);
 app.use(express.static(__dirname + '/../public')); //public folder
 
 app.listen(3000);
