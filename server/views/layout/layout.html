@@ -3,9 +3,13 @@
 <head>
     <link rel="stylesheet" href="/-/css/style.css" type="text/css" />
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="/-/js/closure/base.js"></script>
+    <script src="/-/js/closure/deps/deps.js"></script>
+    <script>goog.require("app");</script>
 </head>
 <body>
 {{> head }}
 {{{ yield }}}
+<script>app.start();</script>
 </body>
 </html>
