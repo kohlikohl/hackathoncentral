@@ -11,6 +11,9 @@ app.engine('html', hoganExpress);
 
 //routes
 app.get('/', require('./controllers/index').homepage);
+app.get('/persona/:persona', require('./controllers/index').persona);
+
+//static routes
 app.use('/-/js/closure/', express.static(__dirname + '/../client/bin/closure/closure/goog'));
 app.use('/-/js/closure/deps', express.static(__dirname + '/../client/bin/js/'));
 app.use('/-/js', express.static(__dirname + '/../client/js/'));

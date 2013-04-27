@@ -9,7 +9,9 @@ IndexController.homepage = function(req,res) {
 }
 
 IndexController.persona = function(req,res) {
-    data.getPersona(req.params.persona, req.params.identifier);
+    var dataObject = new Data('1');
+    dataObject.getPersona(req.params.persona, req.params.identifier);
+    return;
 }
 
 IndexController.region = function(req,res) {
