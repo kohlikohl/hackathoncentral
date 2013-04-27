@@ -1,31 +1,35 @@
-goog.provide("App");
+goog.provide("app.Main");
 
+goog.require("app.map.styles");
 goog.require("goog.dom");
 goog.require("goog.events.EventTarget");
 
 goog.scope(function(){
 
-    var App = function () {
+    var _ = app;
+
+    _.Main = function () {
         goog.base(this);
     };
 
-    goog.inherits(App, goog.events.EventTarget);
-    goog.addSingletonGetter(App);
+    goog.inherits(_.Main, goog.events.EventTarget);
+    goog.addSingletonGetter(_.Main);
 
-    App.prototype.initialise = function () {
+    _.Main.prototype.initialise = function () {
         this.initialiseMap();
     };
 
-    App.prototype.initialiseMap = function () {
+    _.Main.prototype.initialiseMap = function () {
         var mapOptions = {
-                zoom: 8,
-                center: new google.maps.LatLng(-34.397, 150.644),
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                zoom: 10,
+                center: new google.maps.LatLng(51.509597,-0.113983),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                styles: app.map.styles
             },
             map = new google.maps.Map(goog.dom.getElementByClass('js-map-canvas'), mapOptions);
 
     };
 
-    goog.exportSymbol('app.start', App.getInstance().initialise.bind(App.getInstance()));
+    goog.exportSymbol('app.start', _.Main.getInstance().initialise.bind(_.Main.getInstance()));
 
 });
