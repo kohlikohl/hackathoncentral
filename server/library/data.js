@@ -6,7 +6,6 @@ var redis = require('redis'),
 var Data = module.exports = function (args) {
         this.args_ = args;
         this.datasets_ = {};
-        this.reduction_ = {};
 };
 
 Data.prototype.getPersonas = function() {
@@ -21,7 +20,7 @@ Data.prototype.getPersona = function() {
     var deferred = when.defer()
     this.loadDatasets().then(
         function gotEm(datasets) {
-            deferred.resolve(this.reduceDatasets(datasets.pop().pop()));
+            deferred.resolve(this.reduce(this.map(datasets.pop().pop())));
         }.bind(this),
         function darn() {
             deferred.reject("Darn it!");
@@ -31,41 +30,43 @@ Data.prototype.getPersona = function() {
     return deferred.promise;
 };
 
-Data.prototype.reduceDatasets = function(datasets) {
-    var i, j, k, name, running, count;
-    this.reduction_ = {};
-    console.log(datasets);
-
+Data.prototype.map = function(data) {
+    var i, j, k, name, running, count, map = {};
+    
     for (i = 0; i < config.datasets.length; i++) {
         name = config.datasets[i].name;
-        for(j in datasets[name]) {
-            for(k = 0; k < datasets[name][j].length; k++) {
-                if (typeof this.reduction_[datasets[name][j][k].identifier] === 'undefined') {
-                    this.reduction_[datasets[name][j][k].identifier] = {name: datasets[name][j][k].name,labels:{},values:{},scores:{}, score : 0.00};
+        for(j in data[name]) {
+            for(k = 0; k < data[name][j].length; k++) {
+                if (typeof map[data[name][j][k].identifier] === 'undefined') {
+                    map[data[name][j][k].identifier] = {name: data[name][j][k].name,labels:{},values:{},scores:{}, score : 0.00};
                 }
-                if (typeof this.reduction_[datasets[name][j][k].identifier].values[name] === 'undefined') {
-                    this.reduction_[datasets[name][j][k].identifier].labels[name] = [];
-                    this.reduction_[datasets[name][j][k].identifier].values[name] = [];
-                    this.reduction_[datasets[name][j][k].identifier].scores[name] = [];
+                if (typeof map[data[name][j][k].identifier].values[name] === 'undefined') {
+                    map[data[name][j][k].identifier].labels[name] = [];
+                    map[data[name][j][k].identifier].values[name] = [];
+                    map[data[name][j][k].identifier].scores[name] = [];
                 }
 
-                this.reduction_[datasets[name][j][k].identifier].labels[name].push(datasets[name][j][k].label);
-                this.reduction_[datasets[name][j][k].identifier].values[name].push(datasets[name][j][k].value);
-                this.reduction_[datasets[name][j][k].identifier].scores[name].push(datasets[name][j][k].score);
+                map[data[name][j][k].identifier].labels[name].push(data[name][j][k].label);
+                map[data[name][j][k].identifier].values[name].push(data[name][j][k].value);
+                map[data[name][j][k].identifier].scores[name].push(data[name][j][k].score);
             }
             
         }
     }
 
-    for(var borough in this.reduction_) {
+    return map;
+}
+
+Data.prototype.reduce = function(map) {
+    for(var borough in map) {
         running = 0, count = 0;
-        for(var factors in this.reduction_[borough].scores) {
-            running += this.reduction_[borough].scores[factors].reduce(function(a,b){ return a + b} );
-            count += this.reduction_[borough].scores[factors].length;
+        for(var factors in map[borough].scores) {
+            running += map[borough].scores[factors].reduce(function(a,b){ return a + b} );
+            count += map[borough].scores[factors].length;
         }
-        this.reduction_[borough].score = running/count;
+        map[borough].score = running/count;
     }
-    return this.reduction_;
+    return map;
 }
 
 Data.prototype.storeSource = function(data, name, sourceDef) {
@@ -113,7 +114,6 @@ Data.prototype.normalise = function(sourceData) {
 Data.prototype.loadSource = function(source,datasetName) {
     var deferred = when.defer();
     req = http.request(source.urn, function(res) {
-        console.log("Loading " + datasetName + "...");
         var data = "", storeSource = this.storeSource.bind(this);
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
