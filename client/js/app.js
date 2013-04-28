@@ -8,6 +8,7 @@ goog.require("app.ui.PersonaSwitcher");
 goog.require("app.events.EventType");
 
 goog.require("goog.dom");
+goog.require("goog.dom.classlist");
 goog.require("goog.events.EventType");
 goog.require("goog.events.EventHandler");
 goog.require("goog.net.XhrIo");
@@ -78,6 +79,7 @@ goog.scope(function(){
 
     _.Main.prototype.resetApp_ = function(){
         this.overviewScreen.reset();
+        goog.dom.classlist.remove(goog.dom.getElementsByTagNameAndClass('body')[0], 'active-map');
         this.map.setZoom(10);
         this.map.setCenter(new google.maps.LatLng(51.509597,-0.113983));
     };
