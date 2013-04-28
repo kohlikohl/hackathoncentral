@@ -12,6 +12,7 @@ IndexController.homepage = function(req,res) {
 IndexController.personas = function(req,res) {
     var dataObject = new Data('1');
     var personas = dataObject.getPersonas();
+    res.set('Content-Type', 'text/json');
     res.send({"personas" : personas });
 }
 
@@ -26,7 +27,8 @@ IndexController.persona = function(req,res) {
         }
     ).then(
         function respond(personaData) {
-            res.send({status: "ok",help: "help",data:personaData});
+            res.set('Content-Type', 'application/json');
+            res.json({data:personaData});
         }
     );
 }

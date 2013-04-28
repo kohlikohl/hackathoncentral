@@ -8,7 +8,9 @@
                 "crime" : 0.6,
                 "pollution": 0.2,
                 "employment": 0.4,
-                "education": 1.0
+                "income" : 0.6,
+                "education": 1.0,
+                "services": 0.2
             }
         },
         {
@@ -16,11 +18,12 @@
             "name": "Young Professional",
             "weighting": 
             {
-                "crime" : 0.8,
-                "pollution": 0.6,
-                "employment": 1,
-                "income": 1.0,
-                "education": 1.0
+                "crime" : 0.7,
+                "pollution": 0.5,
+                "employment": 1.0,
+                "income" : 0.7,
+                "education": 0.2,
+                "services": 0.6
             }
         },
         {
@@ -28,11 +31,12 @@
             "name": "Family",
             "weighting": 
             {
-                "crime" : 1,
-                "pollution": 0.1,
+                "crime" : 1.0,
+                "pollution": 0.7,
                 "employment": 0.7,
-                "income": 1.0,
-                "education": 1.0
+                "income" : 0.5,
+                "education": 1.0,
+                "services": 0.2
             }
         },
         {
@@ -41,10 +45,11 @@
             "weighting": 
             {
                 "crime" : 1,
-                "pollution": 0.1,
-                "employment": 0.7,
-                "income": 1.0,
-                "education": 0.1
+                "pollution": 1,
+                "employment": 0,
+                "income" : 0.8,
+                "education": 0,
+                "services": 0.8
             }
         }
     ],
@@ -91,13 +96,24 @@
             "name": "pollution",
             "sources": [
                 {
-                    "identifier" : "cte",
-                    "name" : "CO2 total emissions",
+                    "identifier" : "pol1",
+                    "name" : "Total CO2 emissions",
                     "type" : "min",
                     "urn" : {
                         "host" : "production.webservices.esd.org.uk",
                         "port" : 80,
                         "path" : "/InformPlus/data?query1.metricType=440&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=iJDpoVB00ZMELFdb9zxq5wDLQx0=",
+                        "method" : "GET"
+                    }
+                },
+                {
+                    "identifier" : "pol2",
+                    "name" : "Population density (persons per hectare)",
+                    "type" : "min",
+                    "urn" : {
+                        "host" : "production.webservices.esd.org.uk",
+                        "port" : 80,
+                        "path" : "/InformPlus/data?query1.metricType=176&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=kRrunRoaz2hfz2xgZHTLky2mgNw=",
                         "method" : "GET"
                     }
                 }
@@ -107,13 +123,94 @@
             "name": "employment",
             "sources": [
                 {
-                    "identifier" : "ter",
+                    "identifier" : "emp1",
                     "name" : "Total employment rate",
                     "type" : "max",
                     "urn" : {
                         "host" : "production.webservices.esd.org.uk",
                         "port" : 80,
                         "path" : "/InformPlus/data?query1.metricType=49&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=G8iwcFd256aeLMsAzCYk6w0eIPA=",
+                        "method" : "GET"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "education",
+            "sources": [
+                {
+                    "identifier" : "edu1",
+                    "name" : "GCSE achieved (5A*-C inc. Eng & Maths)",
+                    "type" : "max",
+                    "urn" : {
+                        "host" : "production.webservices.esd.org.uk",
+                        "port" : 80,
+                        "path" : "/InformPlus/data?query1.metricType=3&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=TXds2KydQOE2Tc4Izi4QtFFN/LU=",
+                        "method" : "GET"
+                    }
+                },
+                {
+                    "identifier" : "edu2",
+                    "name" : "Total Primary school places",
+                    "type" : "max",
+                    "urn" : {
+                        "host" : "production.webservices.esd.org.uk",
+                        "port" : 80,
+                        "path" : "/InformPlus/data?query1.metricType=63&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=l7CAHhu+NVJIamAwgC/MrPI+q/I=",
+                        "method" : "GET"
+                    }
+                },
+                {
+                    "identifier" : "edu3",
+                    "name" : "Total Secondary school places",
+                    "type" : "max",
+                    "urn" : {
+                        "host" : "production.webservices.esd.org.uk",
+                        "port" : 80,
+                        "path" : "/InformPlus/data?query1.metricType=66&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=+S0+8E8vO5C+0KHXwcnr8HEnHZ4=",
+                        "method" : "GET"
+                    }
+                },
+                {
+                    "identifier" : "edu4",
+                    "name" : "Total NEET (16-18 year olds)",
+                    "type" : "min",
+                    "urn" : {
+                        "host" : "production.webservices.esd.org.uk",
+                        "port" : 80,
+                        "path" : "/InformPlus/data?query1.metricType=11&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=v1CcgpGAQEIQjFAGZ9AyMKiHWJ8=",
+                        "method" : "GET"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "income",
+            "sources": [
+                {
+                    "identifier" : "inc1",
+                    "name" : "Housing affordability ratio",
+                    "type" : "max",
+                    "urn" : {
+                        "host" : "production.webservices.esd.org.uk",
+                        "port" : 80,
+                        "path" : "/InformPlus/data?query1.metricType=75&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=bOTpushBr0zyXOizNGT0nAjoht8=",
+                        "method" : "GET"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "services",
+            "sources": [
+                {
+                    "identifier" : "ser1",
+                    "name" : "Total expenditure of Central services (1000s)",
+                    "type" : "max",
+                    "urn" : {
+                        "host" : "production.webservices.esd.org.uk",
+                        "port" : 80,
+                        "path" : "/InformPlus/data?query1.metricType=215&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=KKK7amjmLkrIGtlCuYHS8vh5WRQ=",
                         "method" : "GET"
                     }
                 }
