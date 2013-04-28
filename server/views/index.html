@@ -1,11 +1,15 @@
 <div class="map js-map-canvas"></div>
 
 <div class="intro js-persona-container">
-    <div class="intro-text"></div>
+    <h1>Select your persona</h1>
     <div class="select-personas">
         {{#personas}}
-        <a href="#" data-persona="{{identifier}}" data-persona-name="{{name}}"><span>{{name}}</span></a>
+        <a href="#" data-persona="{{identifier}}" data-persona-name="{{name}}" title="{{name}}"><span>{{name}}</span></a>
         {{/personas}}
+    </div>
+    <div class="intro-text">
+        <p>We have collated and aggregated data from various sources to provide you with a tool to find the most suitable areas in the London for you to live based the following factors:
+    Crime levels, Access to Education, Level of Pollution, Access to Service, Cost of Living, Employment Levels and Area Desirability</p>
     </div>
 </div>
 

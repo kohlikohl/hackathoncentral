@@ -329,17 +329,58 @@ body > header .select-personas.show
    Select personas
    ========================================================================== */
 
+.intro > h1
+{
+    text-align: center;
+    color: #fff;
+    opacity: .8;
+    width: 90%;
+    margin: 100px auto 0;
+    max-width: 500px;
+    clear: both;
+}
+
+.intro .intro-text
+{
+    text-align: center;
+    font-size: 0.875em;
+    color: #fff;
+    opacity: .8;
+    width: 100%;
+    margin: 50px auto 0;
+    padding: 2em 0;
+    clear: both;
+    position: absolute;
+    bottom: 0;
+    background: rgba(0,0,0,.5);
+}
+
+@media all and (max-width: 600px) {
+    .intro .intro-text
+    {
+        position: relative;
+    }
+}
+
+.intro .intro-text > p
+{
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto 0;
+    max-width: 500px;
+}
+
 .intro .select-personas {
     margin: auto;
     padding: 2em 0;
     /*idth: 90%;*/
-    max-width: 300px;
+    max-width: 245px;
     height: 200px;
-    position: absolute;
+    /*position: absolute;
     top: 0;
     right: 0;
     left: 0;
-    bottom: 0;
+    bottom: 0;*/
 }
 
 .select-personas a {
@@ -364,6 +405,7 @@ body > header .select-personas.show
     height: 70px;
     position: absolute;
     background: url(../img/hack-sprite.png) no-repeat 0 0;
+    pointer-events: none;
 }
 
 .select-personas a:first-child
@@ -426,6 +468,10 @@ body > header .select-personas.show
 .select-personas a:hover
 {
     background-color: #18976f;
+    -webkit-transition: background-color .2s ease-in-out;
+-moz-transition: background-color .2s ease-in-out;
+-o-transition: background-color .2s ease-in-out;
+transition: background-color .2s ease-in-out;
 }
 
 
