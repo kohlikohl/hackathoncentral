@@ -350,9 +350,11 @@ body > header .select-personas.show
     margin: 1px;
     width:120px;
     height:120px;
+    outline: none !important; 
     /*padding: .75em 1.5em .55em;*/
     margin-bottom: 1px;
     background: rgba(24,151,111,.6);
+    position: relative;
 }
 
 .select-personas a span {
@@ -360,6 +362,7 @@ body > header .select-personas.show
     display: block;
     width: 70px;
     height: 70px;
+    position: absolute;
     background: url(../img/hack-sprite.png) no-repeat 0 0;
 }
 
@@ -370,11 +373,25 @@ body > header .select-personas.show
      -webkit-border-radius: 140px 0 0 0;
 }
 
+.select-personas a:first-child span
+{
+    background-position: -84px 0;
+    bottom: 9px;
+    right: 5px;
+}
+
 .select-personas a:first-child + a
 {
     border-radius: 0 140px 0 0;
     -moz-border-radius: 0 140px 0 0;
     -webkit-border-radius: 0 140px 0 0;
+}
+
+.select-personas a:first-child + a span
+{
+    background-position: -243px 0;
+    bottom: 6px;
+    left: 17px;
 }
 
 .select-personas a:first-child + a + a
@@ -384,6 +401,13 @@ body > header .select-personas.show
     -webkit-border-radius: 0 0 0 140px;
 }
 
+.select-personas a:first-child + a + a span
+{
+    background-position: -164px 0;
+    bottom: 33px;
+    left: 44px;
+}
+
 .select-personas a:first-child + a + a + a
 {
     border-radius: 0 0 140px 0;
@@ -391,6 +415,14 @@ body > header .select-personas.show
     -webkit-border-radius: 0 0 140px 0;
      
 }
+
+.select-personas a:first-child + a + a + a span
+{
+    bottom: 33px;
+    left: 16px;
+     
+}
+
 .select-personas a:hover
 {
     background-color: #18976f;
