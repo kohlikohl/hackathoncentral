@@ -8,7 +8,7 @@
                 "crime" : 0.6,
                 "pollution": 0.2,
                 "employment": 0.4,
-                "income": 0.7
+                "education": 1.0
             }
         },
         {
@@ -16,10 +16,11 @@
             "name": "Young Professional",
             "weighting": 
             {
-                "crime" : 1,
-                "pollution": 0.1,
-                "employment": 0.7,
-                "income": 1.0
+                "crime" : 0.8,
+                "pollution": 0.6,
+                "employment": 1,
+                "income": 1.0,
+                "education": 1.0
             }
         },
         {
@@ -30,7 +31,8 @@
                 "crime" : 1,
                 "pollution": 0.1,
                 "employment": 0.7,
-                "income": 1.0
+                "income": 1.0,
+                "education": 1.0
             }
         },
         {
@@ -41,18 +43,8 @@
                 "crime" : 1,
                 "pollution": 0.1,
                 "employment": 0.7,
-                "income": 1.0
-            }
-        },
-        {
-            "identifier": 5,
-            "name": "OAP",
-            "weighting": 
-            {
-                "crime" : 1,
-                "pollution": 0.1,
-                "employment": 0.7,
-                "income": 1.0
+                "income": 1.0,
+                "education": 0.1
             }
         }
     ],

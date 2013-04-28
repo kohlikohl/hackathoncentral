@@ -17,8 +17,7 @@ IndexController.personas = function(req,res) {
 
 IndexController.persona = function(req,res) {
     var dataObject = new Data('1');
-    var personaData = dataObject.getPersona(req.params.persona, req.params.borough);
-    dataObject.getPersona(req.params.persona, req.params.identifier).then(
+    dataObject.getPersona(req.params.persona, req.params.borough).then(
         function done(data) {
             return data;
         },
@@ -30,12 +29,4 @@ IndexController.persona = function(req,res) {
             res.send({status: "ok",help: "help",data:personaData});
         }
     );
-}
-
-IndexController.region = function(req,res) {
-    data.getRegion(req.params.identifier);
-}
-
-IndexController.borough = function(req,res) {
-    data.getBorough(req.params.identifier);
 }

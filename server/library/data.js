@@ -18,7 +18,7 @@ Data.prototype.getDataSets = function() {
 
 Data.prototype.getPersona = function(persona,borough) {
     var deferred = when.defer()
-    this.loadDatasets().then(
+    this.loadDatasets(persona).then(
         function gotEm(datasets) {
             deferred.resolve(this.reduce(this.map(datasets.pop().pop()),persona,borough));
         }.bind(this),
@@ -30,7 +30,14 @@ Data.prototype.getPersona = function(persona,borough) {
     return deferred.promise;
 };
 
-Data.prototype.map = function(data,persona,borough) {
+Data.prototype.getById = function(resource,id) {
+    for(var i = 0; i < resource.length; i++) {
+        if (resource[i].identifier == id) return resource[i];
+    }
+    return false;
+}
+
+Data.prototype.map = function(data) {
     var i, j, k, name, running, count, map = {};
     
     for (i = 0; i < config.datasets.length; i++) {
@@ -57,19 +64,30 @@ Data.prototype.map = function(data,persona,borough) {
     return map;
 }
 
-Data.prototype.reduce = function(map) {
+Data.prototype.reduce = function(map,persona,opt_borough) {
+    var min = {}, max = {};
+    if (typeof persona !== 'undefined') {
+        persona = this.getById(config.personas,persona);
+    }
+
     for(var borough in map) {
         running = 0, count = 0;
         for(var factors in map[borough].scores) {
-            running += map[borough].scores[factors].reduce(function(a,b){ return a + b} );
-            count += map[borough].scores[factors].length;
+            running += Math.abs(persona.weighting[factors]) * map[borough].scores[factors].reduce(function(a,b){ 
+                return a + b} );
+            count +=  Math.abs(persona.weighting[factors]) * map[borough].scores[factors].length;
         }
         map[borough].score = running/count;
     }
+
+    if (typeof opt_borough !== 'undefined' && typeof map[opt_borough] !== 'undefined') {
+        return map[opt_borough];
+    }
+
     return map;
 }
 
-Data.prototype.storeSource = function(data, name, sourceDef) {
+Data.prototype.storeSource = function(data, name, sourceDef, persona) {
     var resource = JSON.parse(data), source = [], output = this.datasets_;
     for (var i = 0; i < resource.columns.length; i++) {
         source.push({ 
@@ -77,6 +95,8 @@ Data.prototype.storeSource = function(data, name, sourceDef) {
                 name: resource.columns[i].area.label,
                 label: sourceDef.name,
                 label_identifier: sourceDef.identifier,
+                group : name,
+                type: sourceDef.type,
                 value : resource.rows[0].values[i].value
             });
     }
@@ -85,13 +105,17 @@ Data.prototype.storeSource = function(data, name, sourceDef) {
         output[name] =  {};
     }
 
-    output[name][sourceDef.identifier] = this.normalise(source);
+    output[name][sourceDef.identifier] = this.normalise(source,persona);
 
     return output;
 };
 
-Data.prototype.normalise = function(sourceData) {
+Data.prototype.normalise = function(sourceData, persona) {
     var min = 9999999999, max = 0, i = 0, range = 0
+    console.log(persona);
+    if (typeof persona !== 'undefined') {
+        persona = this.getById(config.personas,persona);
+    }
 
     for(i = 0; i < sourceData.length; i++) {
         if (min > sourceData[i].value) {
@@ -106,12 +130,19 @@ Data.prototype.normalise = function(sourceData) {
 
     for(i = 0; i < sourceData.length; i++) {
         sourceData[i].score = (sourceData[i].value-min)/range;
+        if (sourceData[i].type == 'min')  {
+            sourceData[i].score = 1 - sourceData[i].score;
+        }
+        console.log("Weighting for " + sourceData[i].group + " is " + persona.weighting[sourceData[i].group]);
+        if (persona.weighting[sourceData[i].group] < 0)  {
+            sourceData[i].score = 1 - sourceData[i].score;
+        }
     }
 
     return sourceData;
 }
 
-Data.prototype.loadSource = function(source,datasetName) {
+Data.prototype.loadSource = function(source,datasetName,persona) {
     var deferred = when.defer();
     req = http.request(source.urn, function(res) {
         var data = "", storeSource = this.storeSource.bind(this);
@@ -121,7 +152,7 @@ Data.prototype.loadSource = function(source,datasetName) {
         });
 
         res.on('end', function() {
-            deferred.resolve(storeSource(data,datasetName,source));
+            deferred.resolve(storeSource(data,datasetName,source,persona));
         });
 
     }.bind(this));
@@ -136,18 +167,18 @@ Data.prototype.loadSource = function(source,datasetName) {
 }
 
 
-Data.prototype.loadDataset = function (dataset) {
+Data.prototype.loadDataset = function (dataset,persona) {
     var i =0,deferreds = [], deferred = when.defer();
     for (i = 0; i < dataset.sources.length; i++) {
-        deferreds.push(this.loadSource(dataset.sources[i],dataset.name));
+        deferreds.push(this.loadSource(dataset.sources[i],dataset.name,persona));
     }
     return when.all(deferreds);
 };
 
-Data.prototype.loadDatasets = function(name) {
+Data.prototype.loadDatasets = function(persona) {
     var i = 0, deferreds = []
     for (i = 0; i < config.datasets.length; i++) {
-            deferreds.push(this.loadDataset(config.datasets[i]));
+            deferreds.push(this.loadDataset(config.datasets[i],persona));
     }
     return when.all(deferreds);
 };
