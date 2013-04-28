@@ -12,6 +12,18 @@ Data.prototype.getPersonas = function() {
     return config.personas;
 };
 
+Data.prototype.getBoroughs = function(borough) {
+    var i;
+    if (typeof borough === 'undefined') {
+        return config.boroughs;
+    }
+    for(i = 0; i < config.boroughs; i++) {
+        if (config.boroughs[i].identifier === identifier) {
+            return config.boroughs[i];
+        }
+    }
+};
+
 Data.prototype.getDataSets = function() {
     return config.datasets;
 };
