@@ -14,8 +14,11 @@ goog.scope(function () {
         this.data = {};
         this.map = map;
         this.drawnPolygons = [];
+        this.mapCenter;
 
         this.handler = new goog.events.EventHandler();
+        this.handler.listen(window, goog.events.EventType.RESIZE, goog.bind(this.repositionMap, this));
+        
         this.detailrenderer = new _.Detail();
     };
 
@@ -103,10 +106,22 @@ goog.scope(function () {
         this.map.fitBounds(bounds);
         this.map.setZoom(this.map.getZoom() - 2 );
         setTimeout(goog.bind(function(){
-            this.map.panBy(0, 100)
+            this.map.panBy(0, 100);
+            this.mapCenter = this.map.getCenter();
         }, this), 100);
 
         this.detailrenderer.render(relevantData);
+    };
+    
+    _.Borough.prototype.repositionMap = function(){
+        //console.log('position', this.mapCenter);
+
+        if(typeof this.mapCenter === 'undefined'){
+            this.map.setCenter(new google.maps.LatLng(51.509597,-0.113983));
+            return;
+        }
+
+        this.map.setCenter(this.mapCenter);
     };
 
     _.Borough.prototype.resetAllPolygons = function(){
