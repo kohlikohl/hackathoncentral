@@ -21,7 +21,7 @@ html, body {
     height: 100%;*/
     position: absolute; !important;
     top: 38px;
-    bottom: 0;
+    bottom: 190px;
     left: 0;
     right: 0;
     background: #1A1A1A !important;
@@ -114,7 +114,7 @@ body > header .select-personas.show
     content: "";
     display: block;
     width: 100%;
-    height: 3px;
+    height: 2px;
     opacity: .4;
 
     background: #f3dd46;
@@ -129,9 +129,12 @@ body > header .select-personas.show
 
 .location-details header
 {
+    color: #fff;
+    line-height: 1.2;
+
     text-align: center;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     padding: 30px;
     margin: -50px auto -70px;
     border-radius: 200px;
@@ -139,12 +142,51 @@ body > header .select-personas.show
     overflow: hidden;
     position: relative;
     background: rgba(255,255,255,1);
-    border-bottom: 1px solid rgba(0,0,0,.6);
+    border: 8px solid rgba(0,0,0,.12);
 }
+
+.location-details header:before
+{
+    content: "";
+    width: 90px;
+    height: 90px;
+    padding: 30px;
+    border-radius: 200px;
+    background-clip: padding-box;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: -moz-linear-gradient(-45deg,  rgba(255,255,255,0.3) 0%, rgba(0,0,0,1) 100%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(255,255,255,0.3)), color-stop(100%,rgba(0,0,0,1)));
+    background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,0.3) 0%,rgba(0,0,0,1) 100%);
+    background: -o-linear-gradient(-45deg,  rgba(255,255,255,0.3) 0%,rgba(0,0,0,1) 100%);
+    background: -ms-linear-gradient(-45deg,  rgba(255,255,255,0.3) 0%,rgba(0,0,0,1) 100%);
+    background: linear-gradient(135deg,  rgba(255,255,255,0.3) 0%,rgba(0,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4dffffff', endColorstr='#000000',GradientType=1 );
+
+    opacity: .1;
+}
+/*.location-details header:after
+{
+    content: "";
+    width: 100px;
+    height: 100px;
+    padding: 29px;
+    border-radius: 200px;
+    border: 1px solid #000;
+    background-clip: padding-box;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    border-color: #fff #000 #000 #fff;
+}*/
 
 .location-details h2
 {
-    font-size: .625em;
+    font-size: .75em;
     text-transform: uppercase;
     margin: 0;
     position: relative;
@@ -152,7 +194,6 @@ body > header .select-personas.show
 
 .location-details .stats-average
 {
-    color: #fff;
     font-size: 5em;
     font-weight: bold;
 
@@ -196,6 +237,68 @@ body > header .select-personas.show
     width: 12%;
 }
 
+@media all and (max-width: 1060px) {
+    .stats
+    {
+        margin-top: -130px;
+    }
+    .stats li
+    {
+        width: 25%;
+        margin-bottom: -50px;
+    }
+    .stats li:first-child,
+    .stats li:first-child + li
+    {
+        width: 50%;
+        position: relative;
+        bottom: -50px;
+    }
+    .stats li.spacer
+    {
+        width: 0%;
+    }
+
+}
+
+@media all and (max-width: 600px) {
+
+    .map
+    {
+        height: 70%;
+    }
+    .location-details
+    {
+       position: relative;
+       top: 70%;
+       margin-top: 38px;
+    }
+    .stats
+    {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    .stats ul
+    {
+        margin-top: 80px;
+    }
+    .stats li
+    {
+        width: 50%;
+        margin-bottom: 1.5em;
+    }
+    .stats li:first-child,
+    .stats li:first-child + li
+    {
+        position: static;
+        bottom: 0;
+    }
+    .stats li.spacer
+    {
+        width: 0%;
+    }
+}
+
 .stats li strong
 {
     font-size: 0.813em;
@@ -208,6 +311,12 @@ body > header .select-personas.show
 .stats .chart
 {
     margin: 0 auto;
+}
+
+.stats .chart > div
+{
+    font-size: .75em !important;
+    color: #fff;
 }
 
 .stats .stats-info
@@ -223,8 +332,8 @@ body > header .select-personas.show
 .intro .select-personas {
     margin: auto;
     padding: 2em 0;
-    width: 90%;
-    max-width: 250px;
+    /*idth: 90%;*/
+    max-width: 300px;
     height: 200px;
     position: absolute;
     top: 0;
@@ -237,11 +346,51 @@ body > header .select-personas.show
     color: #fff;
     text-decoration: none;
     display: block;
-    padding: .75em 1.5em .55em;
+    float: left;
+    margin: 1px;
+    width:120px;
+    height:120px;
+    /*padding: .75em 1.5em .55em;*/
     margin-bottom: 1px;
-    background-color: #137757;
+    background: rgba(24,151,111,.6);
 }
 
+.select-personas a span {
+    text-indent: -999em;
+    display: block;
+    width: 70px;
+    height: 70px;
+    background: url(../img/hack-sprite.png) no-repeat 0 0;
+}
+
+.select-personas a:first-child
+{
+     border-radius: 140px 0 0 0;
+     -moz-border-radius: 140px 0 0 0;
+     -webkit-border-radius: 140px 0 0 0;
+}
+
+.select-personas a:first-child + a
+{
+    border-radius: 0 140px 0 0;
+    -moz-border-radius: 0 140px 0 0;
+    -webkit-border-radius: 0 140px 0 0;
+}
+
+.select-personas a:first-child + a + a
+{
+    border-radius: 0 0 0 140px;
+    -moz-border-radius: 0 0 0 140px;
+    -webkit-border-radius: 0 0 0 140px;
+}
+
+.select-personas a:first-child + a + a + a
+{
+    border-radius: 0 0 140px 0;
+    -moz-border-radius: 0 0 140px 0;
+    -webkit-border-radius: 0 0 140px 0;
+     
+}
 .select-personas a:hover
 {
     background-color: #18976f;

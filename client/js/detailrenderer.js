@@ -11,7 +11,7 @@ goog.scope(function () {
     _.Detail = function () {
         this.chartConf = {
             size: 90,
-            bgColor: "red"
+            bgColor: "rgba(255,255,255,.06)"
         };
 
         this.renderedOnce = false;
