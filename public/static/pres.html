@@ -41,42 +41,100 @@ URL: https://code.google.com/p/io-2012-slides
       <p data-config-presenter><!-- populated from slide_config.json --></p>
     </hgroup>
   </slide>
-  <slide>
-    <hgroup>
-      <h2>Links</h2>
-    </hgroup>
-    <article>
-      <p>Site: <a href="http://stark-fortress-7714.herokuapp.com/">http://stark-fortress-7714.herokuapp.com/</a></p>
-      <p>Github: <a href="http://github.com/kohlikohl/hackathoncentral">http://github.com/kohlikohl/hackathoncentral</a></p>
-    </article>
-  </slide>
-  <slide>
-    <hgroup>
+
+    <slide>
+        <hgroup>
       <h2>Our Idea</h2>
     </hgroup>
     <article>
-      <ul class="build">
-        <li>
-          To build that an app that provides segmentations of society with a breakdown
-          on the suitability of areas in London to live.
-        </li>
-        <li>
-          Use data served up by the <a href="http://api.esd.org.uk/" target="_blank">esd-toolkit</a> to make an API
-          mashup that we leverage in a dashboard.
-        </li>
-      </ul>
+        <ul class="">
+            <li>
+                To help out-of-towners and Londoners to find the most suitable place to live.
+                <ul>
+                    <li>Students</li>
+                    <li>Families</li>
+                    <li>Young Professionals</li>
+                    <li>Pensioners</li>
+                </ul>
+            </li>
+            <li>
+                Mashup of multiple API's
+            </li>
+            <li>
+                Generating index, displaying on a map
+            </li>
+            <li>
+                Drill down to postcode level
+            </li>
+            <li>
+                Social feedback
+            </li>
+            <li>
+                Usable, accessible on mobile devices
+            </li>
+        </ul>
     </article>
   </slide>
-  <slide>
-    <hgroup>
-      <h2>Our Tech</h2>
+
+    <slide>
+        <hgroup>
+            <h2>Our API's</h2>
+        </hgroup>
+        <article>
+            <ul class="">
+                <li>
+                    Policing data, Transport data from different API's?
+                </li>
+            </ul>
+        </article>
+        <article>
+            <ul class="">
+                <li>
+                    Local Government Association’s <a href="http://api.esd.org.uk/">esd-toolkit</a>
+                    <ul>
+                        <li>~15+ endpoints
+                            <ul>
+                                <li>Pollution</li>
+                                <li>Crime</li>
+                                <li>Public services</li>
+                                <li>Education</li>
+                                <li>Cost of living</li>
+                                <li>Employment</li>
+                            </ul>
+                        </li>
+                        <li>London Borough level</li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+    </slide>
+
+    <slide>
+        <hgroup>
+        <h2>Our Tech</h2>
     </hgroup>
     <article>
-      <ul class="build">
-        <li>Front-end: Google Closure, Google Maps API</li>
-        <li>Back-end: Node.js, Redis, Express.js, Mustache</li>
-        <li>Hosting: Heroku</li>
-      </ul>
+        <ul class="">
+            <li><b>Front-end</b>
+                <ul>
+                    <li>Google Closure Library</li>
+                    <li>Google Maps API</li>
+                    <li>Wikimapia.org API</li>
+                </ul>
+            </li>
+            <li><b>Back-end</b>
+                <ul>
+                    <li>Node.js</li>
+                    <li>Express.js</li>
+                    <li>hogan-express, (Mustache templating)</li>
+                </ul>
+            </li>
+            <li><b>Hosting</b>
+                <ul>
+                    <li>Heroku</li>
+                </ul>
+            </li>
+        </ul>
     </article>
   </slide>
 
@@ -84,29 +142,33 @@ URL: https://code.google.com/p/io-2012-slides
     <hgroup>
       <h2 class="white">Our Demo</h2>
     </hgroup>
-    <article class="flexbox vleft auto-fadein">
-      <p><a href="/">Launch</a></p>
-    </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>How would we improve it?</h2>
+        <h2>Improvements</h2>
     </hgroup>
     <article>
-      <ul class="build">
-        <li>Add drill down to areas of a Borough</li>
-        <li>Overlay properties for sales and rent on Map</li>
-        <li>Make use of other data sources</li>
-      </ul>
+        <ul class="">
+            <li>Drill down to ward, postcode level</li>
+            <li>Mashup with property API's</li>
+            <li>Use more data-sources to refine results</li>
+            <li>Roll out to other cities</li>
+        </ul>
     </article>
   </slide>
-
-  <slide class="thank-you-slide segue nobackground">
+    <slide>
+        <hgroup>
+            <h2>Try it:</h2>
+        </hgroup>
+        <article>
+            <h1 style="font-size: 50px;padding-top:100px"><a href="http://bit.ly/cloudOver">bit.ly/cloudOver/</a></h1>
+        </article>
+    </slide>
+    <slide class="thank-you-slide segue nobackground">
     <aside class="gdbar right"><img src="/-/img/slides/clouds.png"></aside>
     <article class="flexbox vleft auto-fadein">
       <h2>&lt;Thank You!&gt;</h2>
-      <p>Git repo: <a href="http://github.com/kohlikohl/hackathoncentral">http://github.com/kohlikohl/hackathoncentral/</a></p>
     </article>
     <p class="auto-fadein" data-config-contact>
       <!-- populated from slide_config.json -->

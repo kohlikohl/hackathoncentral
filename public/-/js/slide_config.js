@@ -3,10 +3,6 @@ var SLIDE_CONFIG = {
   settings: {
     title: 'Clouds over London',
     subtitle: 'Team Bieber',
-    eventInfo: {
-      title: 'Hackathon Central',
-      date: '28/3/2013'
-    },
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
     enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
@@ -28,12 +24,12 @@ var SLIDE_CONFIG = {
   },
   {
     name: 'Matthias Knoll',
-    company: 'Developer',
+    company: 'Developer - @kohlikohl',
     github: 'http://github.com/kohlikohl/hackathoncentral'
   },
   {
-    name: 'Sonja Streider',
-    company: 'Designer',
+    name: 'Sonja Strieder',
+    company: 'Designer & Frontend Dev - @sonjarts',
     github: 'http://github.com/kohlikohl/hackathoncentral'
   }]
 };
