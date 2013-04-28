@@ -54,7 +54,26 @@ body > header h1
     font-weight: bold;
     text-transform: uppercase;
     display: inline-block;
+    padding-right: 2em;
     margin: 0;
+}
+
+body > header .links
+{
+    display: inline-block;
+}
+
+body > header .link
+{
+    fonti-size: 0.8em;
+    color: #eee;
+    text-decoration: none;
+}
+
+body > header .link:hover
+{
+    color: #eee;
+    text-decoration: underline;
 }
 
 body > header .utilities
