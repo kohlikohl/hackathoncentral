@@ -21,4 +21,4 @@ app.use('/-/js/closure/deps', express.static(__dirname + '/../client/bin/js/'));
 app.use('/-/js', express.static(__dirname + '/../client/js/'));
 app.use(express.static(__dirname + '/../public')); //public folder
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);

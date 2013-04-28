@@ -8,11 +8,17 @@ html, body {
     height: 100%;
 }
 
+.wrapper
+{
+    margin: 0 auto;
+    width: 90%;
+}
+
 .map {
-    width: 100%;
-    height: 100%;
-    position: fixed !important;
-    top: 50px;
+    /*width: 100%;
+    height: 100%;*/
+    position: absolute; !important;
+    top: 38px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -24,8 +30,8 @@ html, body {
    Header
    ========================================================================== */
 
-header {
-    color: #a2b124;
+body > header {
+    color: #ccc;
     padding: .5em 2em;
     position: fixed;
     top: 0;
@@ -35,7 +41,7 @@ header {
     background-color: #111013;
 }
 
-header h1
+body > header h1
 {
     font-size: 1em;
     font-weight: bold;
@@ -44,19 +50,19 @@ header h1
     margin: 0;
 }
 
-header .utilities
+body > header .utilities
 {
     float: right;
 }
 
-header .select-personas
+body > header .select-personas
 {
     height: 0;
     overflow: hidden;
     position: absolute;
 }
 
-header .select-personas.show
+body > header .select-personas.show
 {
     height: auto;
 }
@@ -88,12 +94,79 @@ header .select-personas.show
 
 .location-details
 {
-    background: yellow;
+    color: #aaa;
+    background: #111013;
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
 }
+
+.location-details:before
+{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+    opacity: .4;
+
+    background: #f3dd46;
+    background: -moz-linear-gradient(left,  #f3dd46 0%, #18976f 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f3dd46), color-stop(100%,#18976f));
+    background: -webkit-linear-gradient(left,  #f3dd46 0%,#18976f 100%);
+    background: -o-linear-gradient(left,  #f3dd46 0%,#18976f 100%);
+    background: -ms-linear-gradient(left,  #f3dd46 0%,#18976f 100%);
+    background: linear-gradient(to right,  #f3dd46 0%,#18976f 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3dd46', endColorstr='#18976f',GradientType=1 );
+}
+
+.location-details header
+{
+    background: rgba(255,255,255,.03);
+    border-bottom: 1px solid rgba(0,0,0,.6);
+}
+
+.location-details h2
+{
+    margin: 0;
+}
+
+/* ==========================================================================
+   Stats
+   ========================================================================== */
+
+
+.stats ul
+{
+    padding: 0;
+}
+
+.stats li
+{
+    text-align: center;
+    width: 16.666%;
+    display: inline-block;
+}
+
+.stats li strong
+{
+    font-size: 0.813em;
+    font-weight: normal;
+    font-style: italic;
+    display: block;
+    margin: .75em 0;
+}
+
+.stats .chart
+{
+    margin: 0 auto;
+}
+
+.stats .stats-info
+{
+    display: none;
+}
+
 
 /* ==========================================================================
    Select personas
@@ -126,12 +199,4 @@ header .select-personas.show
     background-color: #18976f;
 }
 
-/* ==========================================================================
-   Stats
-   ========================================================================== */
 
-.stats li
-{
-    width: 25%;
-    display: inline-block;
-}
