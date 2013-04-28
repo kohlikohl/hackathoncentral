@@ -9,9 +9,15 @@ IndexController.homepage = function(req,res) {
     res.render("index", {"personas" : personas });
 }
 
+IndexController.personas = function(req,res) {
+    var dataObject = new Data('1');
+    var personas = dataObject.getPersonas();
+    res.send({"personas" : personas });
+}
+
 IndexController.persona = function(req,res) {
     var dataObject = new Data('1');
-    var personaData = dataObject.getPersona(req.params.persona, req.params.identifier);
+    var personaData = dataObject.getPersona(req.params.persona, req.params.borough);
     dataObject.getPersona(req.params.persona, req.params.identifier).then(
         function done(data) {
             return data;

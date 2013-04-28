@@ -44,7 +44,7 @@ goog.scope(function(){
     };
 
     _.Main.prototype.loadPersonaData = function(evt){
-        goog.net.XhrIo.send('/persona/' + evt.persona, goog.bind(this.overviewScreen.display, this.overviewScreen));
+        goog.net.XhrIo.send('/personas/' + evt.persona, goog.bind(this.overviewScreen.display, this.overviewScreen));
     };
 
     _.Main.prototype.getMap = function () {

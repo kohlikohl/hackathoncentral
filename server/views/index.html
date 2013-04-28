@@ -1,43 +1,28 @@
 <div class="map js-map-canvas"></div>
 
-<div class="intro">
-    <div class="select-personas js-persona-container">
-        <a href="#" data-persona="student">Student</a>
-        <a href="#" data-persona="professional">Young Professional</a>
-        <a href="#" data-persona="family">Family</a>
-        <a href="#" data-persona="retired">Retired</a>
-    </div>
+<div class="select-personas js-persona-container">
+    {{#personas}}
+    <a href="#" data-persona="{{identifier}}">{{name}}</a>
+    {{/personas}}
 </div>
 
 
 <section class="location-details">
-    <h2>Location name</h2>
-    <div class="stats">
-        <div class="stats-average">
-            60%
-        </div>
-        <ul>
-            <li>
-                <strong>Safety</strong>
-                [canvas pie chart]
-                <div class="stats-info">Bla bla</div>
-            </li><!-- 
-             --><li>
-                <strong>Air quality</strong>
-                [canvas pie chart]
-                <div class="stats-info">Bla bla</div>
-            </li><!-- 
-             --><li>
-                <strong>Cost of living</strong>
-                [canvas pie chart]
-                <div class="stats-info">Bla bla</div>
-            </li><!-- 
-             --><li>
-                <strong>Employment rate</strong>
-                [canvas pie chart]
-                <div class="stats-info">Bla bla</div>
-            </li>
-        </ul>
+	<h2>Location name</h2>
+	<div class="stats">
+		<div>
+			60%
+		</div>
+		<dl>
+			<dt>Safety</dt>
+			<dd></dd>
+			<dt>Air quality</dt>
+			<dd></dd>
+			<dt>Cost of living</dt>
+			<dd></dd>
+			<dt>Employment rate</dt>
+			<dd></dd>
+		</dl>
 
-    </div>
+	</div>
 </section>

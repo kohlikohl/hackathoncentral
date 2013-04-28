@@ -16,11 +16,11 @@ Data.prototype.getDataSets = function() {
     return config.datasets;
 };
 
-Data.prototype.getPersona = function() {
+Data.prototype.getPersona = function(persona,borough) {
     var deferred = when.defer()
     this.loadDatasets().then(
         function gotEm(datasets) {
-            deferred.resolve(this.reduce(this.map(datasets.pop().pop())));
+            deferred.resolve(this.reduce(this.map(datasets.pop().pop()),persona,borough));
         }.bind(this),
         function darn() {
             deferred.reject("Darn it!");
@@ -30,7 +30,7 @@ Data.prototype.getPersona = function() {
     return deferred.promise;
 };
 
-Data.prototype.map = function(data) {
+Data.prototype.map = function(data,persona,borough) {
     var i, j, k, name, running, count, map = {};
     
     for (i = 0; i < config.datasets.length; i++) {
