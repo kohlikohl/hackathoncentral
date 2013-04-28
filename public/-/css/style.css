@@ -122,13 +122,46 @@ body > header .select-personas.show
 
 .location-details header
 {
-    background: rgba(255,255,255,.03);
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    padding: 30px;
+    margin: -50px auto 50px;
+    border-radius: 200px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(255,255,255,.08);
     border-bottom: 1px solid rgba(0,0,0,.6);
 }
 
 .location-details h2
 {
+    font-size: .625em;
+    text-transform: uppercase;
     margin: 0;
+}
+
+.location-details .stats-average
+{
+    color: #fff;
+    font-size: 5em;
+    font-weight: bold;
+
+    position: relative;
+    z-index: 10;
+}
+
+.location-details header:before
+{
+    content: "";
+    display: block;
+    width: 500px;
+    height: 120px;
+    position: absolute;
+    bottom: 0;
+    left: -100px;
+    right: -100px;
+    background: red;
 }
 
 /* ==========================================================================
