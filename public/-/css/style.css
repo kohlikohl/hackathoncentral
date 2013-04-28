@@ -1,10 +1,7 @@
 body {
-    background-: #111013;
-    background: url(../img/bg.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+
+    /*background-: #111013;*/
+    
 }
 
 html, body {
@@ -18,15 +15,85 @@ html, body {
 
 
 /* ==========================================================================
+   Header
+   ========================================================================== */
+
+header {
+    color: #fff;
+    padding: .5em 2em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background-color: #0f5f46;
+}
+
+header h1
+{
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 0;
+}
+
+header .utilities
+{
+    float: right;
+}
+
+header .select-personas
+{
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+}
+
+
+
+/* ==========================================================================
+   Intro
+   ========================================================================== */
+
+.intro
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    background: url(../img/bg.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* ==========================================================================
+   Location details
+   ========================================================================== */
+
+.location-details
+{
+    background: yellow;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* ==========================================================================
    Select personas
    ========================================================================== */
 
-.select-personas {
+.intro .select-personas {
     margin: auto;
     padding: 2em 0;
-    height: 200px;
     width: 90%;
     max-width: 250px;
+    height: 200px;
     position: absolute;
     top: 0;
     right: 0;
@@ -46,4 +113,14 @@ html, body {
 .select-personas a:hover
 {
     background-color: #18976f;
+}
+
+/* ==========================================================================
+   Stats
+   ========================================================================== */
+
+.stats li
+{
+    width: 25%;
+    display: inline-block;
 }
