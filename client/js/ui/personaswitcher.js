@@ -49,6 +49,6 @@ goog.scope(function () {
     };
 
     _.PersonaSwitcher.prototype.show = function(){
-        goog.dom.classlist.toggle(this.switcherControl, 'hide');
+        goog.dom.classlist.remove(this.switcherControl, 'hidden');
     };
 });
