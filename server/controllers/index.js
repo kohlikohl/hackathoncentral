@@ -1,7 +1,6 @@
 var Data = require("../library/data.js"),
     when = require('when');
 
-    redis.debug_mode = true;
 
 var IndexController = module.exports = {};
 
@@ -37,10 +36,6 @@ IndexController.personas = function(req,res) {
 
 IndexController.persona = function(req,res) {
     var dataObject = new Data('1'),
-    count = client.get('count', function(err,result) { if (err | !result) { count = 1; } });
-    client.setex("count",600,++count);
-
-    console.log(count);
     dataObject.getPersona(req.params.persona, req.params.borough).then(
         function done(data) {
             return data;
