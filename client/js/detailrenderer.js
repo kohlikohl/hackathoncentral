@@ -45,11 +45,11 @@ goog.scope(function () {
         goog.dom.dataset.set(this.employmentChart, 'percent', Math.round(data.aggregates.employment * 100));
         $(this.employmentChart).donutchart({'size': this.chartSize, 'fgColor': this.gradientColor_(Math.round(data.aggregates.employment * 100)).cssColor }).donutchart("animate");
 
-//        goog.dom.dataset.set(this.educationChart, 'percent', Math.round(data.aggregates.education * 100));
-//        $(this.educationChart).donutchart({'size': this.chartSize, 'fgColor': '#000' }).donutchart("animate");
-//
-//        goog.dom.dataset.set(this.servicesChart, 'percent', Math.round(data.aggregates.services * 100));
-//        $(this.servicesChart).donutchart({'size': this.chartSize, 'fgColor': '#000' }).donutchart("animate");
+       goog.dom.dataset.set(this.educationChart, 'percent', Math.round(data.aggregates.education * 100));
+       $(this.educationChart).donutchart({'size': this.chartSize, 'fgColor': '#000' }).donutchart("animate");
+
+       goog.dom.dataset.set(this.servicesChart, 'percent', Math.round(data.aggregates.services * 100));
+       $(this.servicesChart).donutchart({'size': this.chartSize, 'fgColor': '#000' }).donutchart("animate");
     };
 
     _.Detail.prototype.renderOnce_ = function(){

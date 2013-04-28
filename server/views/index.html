@@ -1,9 +1,11 @@
 <div class="map js-map-canvas"></div>
 
-<div class="select-personas js-persona-container">
-    {{#personas}}
-    <a href="#" data-persona="{{identifier}}">{{name}}</a>
-    {{/personas}}
+<div class="intro js-persona-container">
+    <div class="select-personas">
+        {{#personas}}
+        <a href="#" data-persona="{{identifier}}">{{name}}</a>
+        {{/personas}}
+    </div>
 </div>
 
 
@@ -33,14 +35,12 @@
                 <strong>Employment rate</strong>
                 <div data-percent="50" class="js-chart-employment"></div>
                 <div class="stats-info">Bla bla</div>
-            </li>
-            <!--
+            </li><!--
                --><li>
               <strong>Quality of education</strong>
               <div data-percent="50" class="js-chart-education"></div>
               <div class="stats-info">Bla bla</div>
-            </li>
-            <!--
+            </li><!--
               --><li>
               <strong>Public Services</strong>
               <div data-percent="50" class="js-chart-services"></div>

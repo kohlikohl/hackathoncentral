@@ -11,6 +11,12 @@ html, body {
 .map {
     width: 100%;
     height: 100%;
+    position: fixed !important;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1A1A1A !important;
 }
 
 
@@ -19,14 +25,14 @@ html, body {
    ========================================================================== */
 
 header {
-    color: #fff;
+    color: #a2b124;
     padding: .5em 2em;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 9999;
-    background-color: #0f5f46;
+    background-color: #111013;
 }
 
 header h1
@@ -48,6 +54,11 @@ header .select-personas
     height: 0;
     overflow: hidden;
     position: absolute;
+}
+
+header .select-personas.show
+{
+    height: auto;
 }
 
 
