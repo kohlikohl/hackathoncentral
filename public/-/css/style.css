@@ -237,6 +237,68 @@ body > header .select-personas.show
     width: 12%;
 }
 
+@media all and (max-width: 1060px) {
+    .stats
+    {
+        margin-top: -130px;
+    }
+    .stats li
+    {
+        width: 25%;
+        margin-bottom: -50px;
+    }
+    .stats li:first-child,
+    .stats li:first-child + li
+    {
+        width: 50%;
+        position: relative;
+        bottom: -50px;
+    }
+    .stats li.spacer
+    {
+        width: 0%;
+    }
+
+}
+
+@media all and (max-width: 600px) {
+
+    .map
+    {
+        height: 70%;
+    }
+    .location-details
+    {
+       position: relative;
+       top: 70%;
+       margin-top: 38px;
+    }
+    .stats
+    {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    .stats ul
+    {
+        margin-top: 80px;
+    }
+    .stats li
+    {
+        width: 50%;
+        margin-bottom: 1.5em;
+    }
+    .stats li:first-child,
+    .stats li:first-child + li
+    {
+        position: static;
+        bottom: 0;
+    }
+    .stats li.spacer
+    {
+        width: 0%;
+    }
+}
+
 .stats li strong
 {
     font-size: 0.813em;
@@ -270,8 +332,8 @@ body > header .select-personas.show
 .intro .select-personas {
     margin: auto;
     padding: 2em 0;
-    width: 90%;
-    max-width: 250px;
+    /*idth: 90%;*/
+    max-width: 300px;
     height: 200px;
     position: absolute;
     top: 0;
@@ -284,11 +346,51 @@ body > header .select-personas.show
     color: #fff;
     text-decoration: none;
     display: block;
-    padding: .75em 1.5em .55em;
+    float: left;
+    margin: 1px;
+    width:120px;
+    height:120px;
+    /*padding: .75em 1.5em .55em;*/
     margin-bottom: 1px;
-    background-color: #137757;
+    background: rgba(24,151,111,.6);
 }
 
+.select-personas a span {
+    text-indent: -999em;
+    display: block;
+    width: 70px;
+    height: 70px;
+    background: url(../img/hack-sprite.png) no-repeat 0 0;
+}
+
+.select-personas a:first-child
+{
+     border-radius: 140px 0 0 0;
+     -moz-border-radius: 140px 0 0 0;
+     -webkit-border-radius: 140px 0 0 0;
+}
+
+.select-personas a:first-child + a
+{
+    border-radius: 0 140px 0 0;
+    -moz-border-radius: 0 140px 0 0;
+    -webkit-border-radius: 0 140px 0 0;
+}
+
+.select-personas a:first-child + a + a
+{
+    border-radius: 0 0 0 140px;
+    -moz-border-radius: 0 0 0 140px;
+    -webkit-border-radius: 0 0 0 140px;
+}
+
+.select-personas a:first-child + a + a + a
+{
+    border-radius: 0 0 140px 0;
+    -moz-border-radius: 0 0 140px 0;
+    -webkit-border-radius: 0 0 140px 0;
+     
+}
 .select-personas a:hover
 {
     background-color: #18976f;
