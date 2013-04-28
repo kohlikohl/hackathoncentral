@@ -1,10 +1,10 @@
-var redis = require('redis'),
-    http = require('http'),
+var http = require('http'),
     when = require('when'),
     config = require(__dirname+'/data/model.json');
 
 var Data = module.exports = function (args) {
         this.args_ = args;
+
         this.datasets_ = {};
 };
 
@@ -20,7 +20,8 @@ Data.prototype.getPersona = function(persona,borough) {
     var deferred = when.defer()
     this.loadDatasets(persona).then(
         function gotEm(datasets) {
-            deferred.resolve(this.reduce(this.map(datasets.pop().pop()),persona,borough));
+            personaData = this.reduce(this.map(datasets.pop().pop()),persona,borough);
+            deferred.resolve(personaData);
         }.bind(this),
         function darn() {
             deferred.reject("Darn it!");
@@ -115,7 +116,6 @@ Data.prototype.storeSource = function(data, name, sourceDef, persona) {
 
 Data.prototype.normalise = function(sourceData, persona) {
     var min = 9999999999, max = 0, i = 0, range = 0
-    console.log(persona);
     if (typeof persona !== 'undefined') {
         persona = this.getById(config.personas,persona);
     }
