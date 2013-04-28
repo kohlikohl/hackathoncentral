@@ -1,7 +1,5 @@
 var Data = require("../library/data.js"),
-    when = require('when'),
-    redis = require('redis')
-    client = redis.createClient();
+    when = require('when');
 
     redis.debug_mode = true;
 
