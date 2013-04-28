@@ -96,8 +96,7 @@ Data.prototype.reduce = function(map,persona,opt_borough) {
     range = max - min;
 
     for (var borough in map) {
-        map[borough].raw_score = map[borough].score;
-        map[borough].score = (map[borough].score-min)/range;
+        map[borough].adjusted = (map[borough].score-min)/range;
     }
 
     if (typeof opt_borough !== 'undefined' && typeof map[opt_borough] !== 'undefined') {
