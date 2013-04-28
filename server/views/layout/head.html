@@ -1,12 +1,11 @@
 <header>
     <h1>Pssst</h1>
     <div class="utilities">
-        <div class="control personas-control"><span>Settings: </span>Student</div>
+        <div class="control personas-control js-personas-switcher-control"><span>Persona: </span><span class="js-persona-name">Student</span></div>
         <div class="select-personas js-persona-switcher">
-            <a href="#" data-persona="student">Student</a>
-            <a href="#" data-persona="professional">Young Professional</a>
-            <a href="#" data-persona="family">Family</a>
-            <a href="#" data-persona="retired">Retired</a>
+            {{#personas}}
+                <a href="#" data-persona="{{identifier}}" data-persona-name="{{name}}">{{name}}</a>
+            {{/personas}}
         </div>
     </div>
 </header>

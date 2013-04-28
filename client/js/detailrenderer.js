@@ -2,6 +2,7 @@ goog.provide("app.renderer.Detail");
 
 goog.require("goog.dom");
 goog.require("goog.fx.dom.FadeInAndShow");
+goog.require("goog.fx.dom.FadeOutAndHide");
 goog.require("goog.dom.dataset");
 
 goog.scope(function () {
@@ -22,6 +23,20 @@ goog.scope(function () {
         this.employmentChart = goog.dom.getElementByClass('js-chart-employment');
         this.educationChart = goog.dom.getElementByClass('js-chart-education');
         this.servicesChart = goog.dom.getElementByClass('js-chart-services');
+    };
+
+    _.Detail.prototype.reset = function(){
+        console.log(this.locationDetails);
+        var fader;
+
+        if(this.locationDetails.style.display === 'none'){
+            return;
+        }
+
+        fader = new goog.fx.dom.FadeOutAndHide(this.locationDetails, 500);
+        fader.play();
+
+        this.renderedOnce = false;
     };
 
     _.Detail.prototype.render = function (data) {

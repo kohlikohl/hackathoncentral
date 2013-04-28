@@ -10,8 +10,8 @@ goog.require("goog.events.EventHandler");
 goog.scope(function () {
     var _ = app.renderer;
 
-    _.Borough = function (map, data) {
-        this.data = data;
+    _.Borough = function (map) {
+        this.data = {};
         this.map = map;
         this.drawnPolygons = [];
 
@@ -19,9 +19,11 @@ goog.scope(function () {
         this.detailrenderer = new _.Detail();
     };
 
-    _.Borough.prototype.render = function () {
+    _.Borough.prototype.render = function (data) {
         var boroughs = app.data.london.boroughs.folder,
             boroughMap = app.data.map.borough;
+
+        this.data = data;
 
         goog.array.forEach(boroughs, function (borough) {
             var polygon = borough.polygon,
@@ -62,6 +64,14 @@ goog.scope(function () {
 
         }, this);
 
+    };
+
+    _.Borough.prototype.reset = function(){
+        goog.array.forEach(this.drawnPolygons, function(element){
+            element.setMap(null);
+        });
+
+        this.detailrenderer.reset();
     };
 
     _.Borough.prototype.getPolygonBounds = function (polygon) {
