@@ -11,7 +11,9 @@ html, body {
 .wrapper
 {
     margin: 0 auto;
-    width: 90%;
+    width: 94%;
+    max-width: 1200px;
+    min-width: 270px;
 }
 
 .map {
@@ -23,6 +25,11 @@ html, body {
     left: 0;
     right: 0;
     background: #1A1A1A !important;
+}
+
+.hidden
+{
+    display: none;
 }
 
 
@@ -126,11 +133,12 @@ body > header .select-personas.show
     width: 100px;
     height: 100px;
     padding: 30px;
-    margin: -50px auto 50px;
+    margin: -50px auto -70px;
     border-radius: 200px;
+    background-clip: padding-box;
     overflow: hidden;
     position: relative;
-    background: rgba(255,255,255,.08);
+    background: rgba(255,255,255,1);
     border-bottom: 1px solid rgba(0,0,0,.6);
 }
 
@@ -139,6 +147,7 @@ body > header .select-personas.show
     font-size: .625em;
     text-transform: uppercase;
     margin: 0;
+    position: relative;
 }
 
 .location-details .stats-average
@@ -151,18 +160,18 @@ body > header .select-personas.show
     z-index: 10;
 }
 
-.location-details header:before
+/*.location-details h2:before
 {
     content: "";
     display: block;
     width: 500px;
     height: 120px;
     position: absolute;
-    bottom: 0;
+    top: 50px;
     left: -100px;
     right: -100px;
     background: red;
-}
+}*/
 
 /* ==========================================================================
    Stats
@@ -172,13 +181,19 @@ body > header .select-personas.show
 .stats ul
 {
     padding: 0;
+    margin: 0 0 1em;
 }
 
 .stats li
 {
     text-align: center;
-    width: 16.666%;
+    width: 14.666%;
     display: inline-block;
+}
+
+.stats li.spacer
+{
+    width: 12%;
 }
 
 .stats li strong

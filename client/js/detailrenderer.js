@@ -8,7 +8,7 @@ goog.scope(function () {
     var _ = app.renderer;
 
     _.Detail = function () {
-        this.chartSize = 100;
+        this.chartSize = 90;
         this.renderedOnce = false;
 
         this.nameElement = goog.dom.getElementByClass('js-borough-name');
@@ -46,10 +46,10 @@ goog.scope(function () {
         $(this.employmentChart).donutchart({'size': this.chartSize, 'fgColor': this.gradientColor_(Math.round(data.aggregates.employment * 100)).cssColor }).donutchart("animate");
 
        goog.dom.dataset.set(this.educationChart, 'percent', Math.round(data.aggregates.education * 100));
-       $(this.educationChart).donutchart({'size': this.chartSize, 'fgColor': '#000' }).donutchart("animate");
+       $(this.educationChart).donutchart({'size': this.chartSize, 'fgColor': this.gradientColor_(Math.round(data.aggregates.education * 100)).cssColor }).donutchart("animate");
 
        goog.dom.dataset.set(this.servicesChart, 'percent', Math.round(data.aggregates.services * 100));
-       $(this.servicesChart).donutchart({'size': this.chartSize, 'fgColor': '#000' }).donutchart("animate");
+       $(this.servicesChart).donutchart({'size': this.chartSize, 'fgColor': this.gradientColor_(Math.round(data.aggregates.services * 100)).cssColor }).donutchart("animate");
     };
 
     _.Detail.prototype.renderOnce_ = function(){
