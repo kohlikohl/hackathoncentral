@@ -5,6 +5,8 @@ goog.require("app.data.map.borough");
 goog.require("app.renderer.Detail");
 
 goog.require("goog.math");
+goog.require("goog.dom");
+goog.require("goog.dom.classlist");
 goog.require("goog.events.EventHandler");
 
 goog.scope(function () {
@@ -97,18 +99,23 @@ goog.scope(function () {
             options = {
                 strokeOpacity: 0.90,
                 fillOpacity: 0.60
-            };
+            },
+            body = goog.dom.getElementsByTagNameAndClass('body')[0];
 
         this.resetAllPolygons();
 
         polygon.setOptions(options);
 
+        //add class to body
+        goog.dom.classlist.add(body, 'active-map');
+
+
         this.map.fitBounds(bounds);
-        this.map.setZoom(this.map.getZoom() - 2 );
-        setTimeout(goog.bind(function(){
-            this.map.panBy(0, 100);
-            this.mapCenter = this.map.getCenter();
-        }, this), 100);
+        this.map.setZoom(this.map.getZoom() - 1 );
+//        setTimeout(goog.bind(function(){
+//            //this.map.panBy(0, 100);
+//        }, this), 100);
+        this.mapCenter = this.map.getCenter();
 
         this.detailrenderer.render(relevantData);
     };
