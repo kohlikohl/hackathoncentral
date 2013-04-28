@@ -11,9 +11,13 @@ app.engine('html', hoganExpress);
 
 //routes
 app.get('/', require('./controllers/index').homepage);
-app.get('/personas', require('./controllers/index').personas);
-app.get('/personas/:persona', require('./controllers/index').persona);
-app.get('/personas/:persona/:borough', require('./controllers/index').persona);
+app.get('/api/0/',require('./controllers/index').api);
+app.get('/api/0/personas', require('./controllers/index').personas);
+app.get('/api/0/personas/:persona', require('./controllers/index').persona);
+app.get('/api/0/personas/:persona/:borough', require('./controllers/index').persona);
+app.get('/api/0/boroughs', require('./controllers/index').boroughs);
+app.get('/api/0/boroughs/:boroughs', require('./controllers/index').boroughs);
+
 
 //static routes
 app.use('/-/js/closure/', express.static(__dirname + '/../client/bin/closure/closure/goog'));
