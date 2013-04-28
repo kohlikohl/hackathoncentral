@@ -18,6 +18,7 @@ goog.scope(function(){
 
         this.map = map;
         this.handler = new goog.events.EventHandler();
+        this.boroughRenderer = new _.renderer.Borough(this.map);
     };
 
     goog.inherits(_.OverviewScreen, goog.events.EventTarget);
@@ -31,11 +32,20 @@ goog.scope(function(){
     };
 
     _.OverviewScreen.prototype.display_ = function(json){
-        var fader = new goog.fx.dom.FadeOutAndHide(goog.dom.getElementByClass('js-persona-container'), 500),
-            boroughRenderer = new _.renderer.Borough(this.map, json);
+        var personaContainer = goog.dom.getElementByClass('js-persona-container'),
+            fader;
 
-        boroughRenderer.render();
-        fader.play();
+        this.boroughRenderer.render(json);
+
+        if(personaContainer.style.display !== 'none'){
+            fader = new goog.fx.dom.FadeOutAndHide(personaContainer, 500);
+            fader.play();
+        }
+
+    };
+
+    _.OverviewScreen.prototype.reset = function(){
+        this.boroughRenderer.reset();
     };
 
 });
