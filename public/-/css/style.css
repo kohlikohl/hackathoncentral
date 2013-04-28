@@ -25,7 +25,7 @@ html, body {
    ========================================================================== */
 
 header {
-    color: #a69f4b;
+    color: #a2b124;
     padding: .5em 2em;
     position: fixed;
     top: 0;
@@ -54,6 +54,11 @@ header .select-personas
     height: 0;
     overflow: hidden;
     position: absolute;
+}
+
+header .select-personas.show
+{
+    height: auto;
 }
 
 
