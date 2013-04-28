@@ -64,7 +64,7 @@ Data.prototype.map = function(data) {
     return map;
 }
 
-Data.prototype.reduce = function(map,persona,borough) {
+Data.prototype.reduce = function(map,persona,opt_borough) {
     var min = {}, max = {};
     if (typeof persona !== 'undefined') {
         persona = this.getById(config.personas,persona);
@@ -79,6 +79,11 @@ Data.prototype.reduce = function(map,persona,borough) {
         }
         map[borough].score = running/count;
     }
+
+    if (typeof opt_borough !== 'undefined' && typeof map[opt_borough] !== 'undefined') {
+        return map[opt_borough];
+    }
+
     return map;
 }
 

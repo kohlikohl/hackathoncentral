@@ -30,11 +30,3 @@ IndexController.persona = function(req,res) {
         }
     );
 }
-
-IndexController.region = function(req,res) {
-    data.getRegion(req.params.identifier);
-}
-
-IndexController.borough = function(req,res) {
-    data.getBorough(req.params.identifier);
-}

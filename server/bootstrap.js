@@ -13,6 +13,7 @@ app.engine('html', hoganExpress);
 app.get('/', require('./controllers/index').homepage);
 app.get('/personas', require('./controllers/index').personas);
 app.get('/personas/:persona', require('./controllers/index').persona);
+app.get('/personas/:persona/:borough', require('./controllers/index').persona);
 
 //static routes
 app.use('/-/js/closure/', express.static(__dirname + '/../client/bin/closure/closure/goog'));
