@@ -1,0 +1,14 @@
+----- Hackathon Central 27-28th March 2013
+
+To install:
+ - Clone the repo
+ - Run `npm install`
+
+To run:
+ - Run `npm start`
+ - Open a browser and go to http://localhost:3000
+
+To access the API
+ - Run `npm start`
+ - Open a browser and go to http://localhost:3000
+
