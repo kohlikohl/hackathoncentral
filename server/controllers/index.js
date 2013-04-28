@@ -12,7 +12,6 @@ IndexController.homepage = function(req,res) {
 IndexController.persona = function(req,res) {
     var dataObject = new Data('1');
     var personaData = dataObject.getPersona(req.params.persona, req.params.identifier);
-    
     dataObject.getPersona(req.params.persona, req.params.identifier).then(
         function done(data) {
             return data;
@@ -22,7 +21,7 @@ IndexController.persona = function(req,res) {
         }
     ).then(
         function respond(personaData) {
-            res.send({status: "ok",data:personaData});
+            res.send({status: "ok",help: "help",data:personaData});
         }
     );
 }
