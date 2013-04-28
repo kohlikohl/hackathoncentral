@@ -35,7 +35,7 @@ IndexController.personas = function(req,res) {
 }
 
 IndexController.persona = function(req,res) {
-    var dataObject = new Data('1'),
+    var dataObject = new Data('1');
     dataObject.getPersona(req.params.persona, req.params.borough).then(
         function done(data) {
             return data;
