@@ -4,7 +4,7 @@ goog.addDependency('../../js/app.js', ['app.Main'], ['app.OverviewScreen', 'app.
 goog.addDependency('../../js/boroughrenderer.js', ['app.renderer.Borough'], ['app.data.london.boroughs', 'app.data.map.borough', 'app.renderer.Detail', 'goog.events.EventHandler', 'goog.math']);
 goog.addDependency('../../js/data/boroughmapping.js', ['app.data.map.borough'], []);
 goog.addDependency('../../js/data/boroughsoflondon.js', ['app.data.london.boroughs'], []);
-goog.addDependency('../../js/detailrenderer.js', ['app.renderer.Detail'], ['goog.dom']);
+goog.addDependency('../../js/detailrenderer.js', ['app.renderer.Detail'], ['goog.dom', 'goog.dom.dataset', 'goog.fx.dom.FadeInAndShow']);
 goog.addDependency('../../js/events/eventtypes.js', ['app.events.EventType'], ['goog.events']);
 goog.addDependency('../../js/events/personaclicked.js', ['app.events.PersonaClickedEvent'], ['app.events.EventType', 'goog.events.Event']);
 goog.addDependency('../../js/mapstyles.js', ['app.map.styles'], []);
