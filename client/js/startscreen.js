@@ -16,17 +16,22 @@ goog.scope(function(){
 
         this.handler = new goog.events.EventHandler();
         this.handler.listen(goog.dom.getElementByClass('js-persona-container'), goog.events.EventType.CLICK, this);
+
+        this.personaName = goog.dom.getElementByClass('js-persona-name');
     };
 
     goog.inherits(_.StartScreen, goog.events.EventTarget);
 
     _.StartScreen.prototype.handleEvent = function(evt){
         var target = evt.target,
-            persona = goog.dom.dataset.get(target, "persona");
+            persona = goog.dom.dataset.get(target, "persona"),
+            personaName = goog.dom.dataset.get(target, "personaName");
 
         if(!persona){
             return;
         }
+
+        goog.dom.setTextContent(this.personaName, personaName);
 
         this.dispatchEvent(new _.events.PersonaClickedEvent(persona));
 

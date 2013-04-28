@@ -3,14 +3,14 @@
 <div class="intro js-persona-container">
     <div class="select-personas">
         {{#personas}}
-        <a href="#" data-persona="{{identifier}}">{{name}}</a>
+        <a href="#" data-persona="{{identifier}}" data-persona-name="{{name}}">{{name}}</a>
         {{/personas}}
     </div>
 </div>
 
 
 <section class="location-details js-location-details" style="display:none">
-   
+
     <header class="js-average-colour">
         <h2 class="js-borough-name">Location name</h2>
         <div class="stats-average js-borough-score">60%</div>

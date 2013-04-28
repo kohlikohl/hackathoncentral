@@ -2,6 +2,7 @@ goog.provide("app.renderer.Detail");
 
 goog.require("goog.dom");
 goog.require("goog.fx.dom.FadeInAndShow");
+goog.require("goog.fx.dom.FadeOutAndHide");
 goog.require("goog.dom.dataset");
 
 goog.scope(function () {
@@ -12,6 +13,7 @@ goog.scope(function () {
         this.renderedOnce = false;
 
         this.nameElement = goog.dom.getElementByClass('js-borough-name');
+        this.averageColourElement = goog.dom.getElementByClass('js-average-colour');
         this.scoreElement = goog.dom.getElementByClass('js-borough-score');
 
         this.locationDetails = goog.dom.getElementByClass('js-location-details');
@@ -24,6 +26,20 @@ goog.scope(function () {
         this.servicesChart = goog.dom.getElementByClass('js-chart-services');
     };
 
+    _.Detail.prototype.reset = function(){
+        console.log(this.locationDetails);
+        var fader;
+
+        if(this.locationDetails.style.display === 'none'){
+            return;
+        }
+
+        fader = new goog.fx.dom.FadeOutAndHide(this.locationDetails, 500);
+        fader.play();
+
+        this.renderedOnce = false;
+    };
+
     _.Detail.prototype.render = function (data) {
 
         if(!this.renderedOnce){
@@ -32,6 +48,8 @@ goog.scope(function () {
 
         goog.dom.setTextContent(this.nameElement, data.name);
         goog.dom.setTextContent(this.scoreElement, Math.round(data.score * 100));
+
+        this.averageColourElement.style.backgroundColor = this.gradientColor_(Math.round(data.score * 100)).cssColor;
 
         goog.dom.dataset.set(this.crimeChart, 'percent', Math.round(data.aggregates.crime * 100));
         $(this.crimeChart).donutchart({'size': this.chartSize, 'fgColor': this.gradientColor_(Math.round(data.aggregates.crime * 100)).cssColor }).donutchart("animate");
