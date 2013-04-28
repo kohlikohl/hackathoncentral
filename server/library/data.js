@@ -45,7 +45,7 @@ Data.prototype.map = function(data) {
         for(j in data[name]) {
             for(k = 0; k < data[name][j].length; k++) {
                 if (typeof map[data[name][j][k].identifier] === 'undefined') {
-                    map[data[name][j][k].identifier] = {name: data[name][j][k].name,labels:{},values:{},scores:{}, score : 0.00};
+                    map[data[name][j][k].identifier] = {name: data[name][j][k].name,labels:{},values:{},scores:{},aggregates:{}, score : 0.00};
                 }
                 if (typeof map[data[name][j][k].identifier].values[name] === 'undefined') {
                     map[data[name][j][k].identifier].labels[name] = [];
@@ -65,7 +65,7 @@ Data.prototype.map = function(data) {
 };
 
 Data.prototype.reduce = function(map,persona,opt_borough) {
-    var min = {}, max = {};
+    var sum, running, count;
     if (typeof persona !== 'undefined') {
         persona = this.getById(config.personas,persona);
     }
@@ -73,18 +73,15 @@ Data.prototype.reduce = function(map,persona,opt_borough) {
     for(var borough in map) {
         running = 0, count = 0;
         for(var factors in map[borough].scores) {
-            running += Math.abs(persona.weighting[factors]) * map[borough].scores[factors].reduce(function(a,b){ 
-                return a + b});
+            sum = map[borough].scores[factors].reduce(function(a,b){ 
+                return a + b}
+            );
+            map[borough].aggregates[factors] = sum/map[borough].scores[factors].length;
+            running += Math.abs(persona.weighting[factors]) * sum;
             count +=  Math.abs(persona.weighting[factors]) * map[borough].scores[factors].length;
         }
         map[borough].score = running/count;
     }
-
-
-
-    for(var borough in map) {
-    }
-
 
     if (typeof opt_borough !== 'undefined' && typeof map[opt_borough] !== 'undefined') {
         return map[opt_sborough];
