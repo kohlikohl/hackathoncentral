@@ -90,6 +90,13 @@ body > header .select-personas
     height: 0;
     overflow: hidden;
     position: absolute;
+    top: 38px;
+    right: 0;
+}
+header .select-personas .personas-control
+{
+    cursor: pointer;
+    font-size: .65em;
 }
 
 body > header .select-personas.show
@@ -486,6 +493,20 @@ body > header .select-personas.show
     bottom: 33px;
     left: 16px;
      
+}
+
+header .select-personas a 
+{
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin: 1px;
+    width: 200px;
+    outline: none !important; 
+    padding: .75em 1.5em .55em;
+    margin-bottom: 1px;
+    background: rgba(24,151,111,.6);
+    position: relative;
 }
 
 .select-personas a:hover
