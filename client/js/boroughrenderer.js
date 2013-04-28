@@ -39,7 +39,7 @@ goog.scope(function () {
                 return;
             }
 
-            score = Math.round(relevantData.score * 100);
+            score = Math.round(relevantData.adjusted * 100);
 
             goog.array.forEach(polygon, function(element){
                 goog.array.insert(coords, new google.maps.LatLng(element.y, element.x));
@@ -90,7 +90,6 @@ goog.scope(function () {
     };
 
     _.Borough.prototype.renderAdditionalData = function (evt, relevantData, polygon) {
-        console.log(evt, relevantData, polygon);
         var bounds = this.getPolygonBounds(polygon),
             options = {
                 strokeOpacity: 0.90,
