@@ -21,10 +21,14 @@ html, body {
     height: 100%;*/
     position: absolute; !important;
     top: 38px;
-    bottom: 190px;
+    bottom: 0;
     left: 0;
     right: 0;
     background: #1A1A1A !important;
+}
+.active-map .map
+{
+    bottom: 190px;
 }
 
 .hidden
@@ -402,7 +406,7 @@ body > header .select-personas.show
     bottom: 0;*/
 }
 
-.select-personas a {
+.intro .select-personas a {
     color: #fff;
     text-decoration: none;
     display: block;
@@ -417,7 +421,7 @@ body > header .select-personas.show
     position: relative;
 }
 
-.select-personas a span {
+.intro .select-personas a span {
     text-indent: -999em;
     display: block;
     width: 70px;
@@ -427,49 +431,49 @@ body > header .select-personas.show
     pointer-events: none;
 }
 
-.select-personas a:first-child
+.intro .select-personas a:first-child
 {
      border-radius: 140px 0 0 0;
      -moz-border-radius: 140px 0 0 0;
      -webkit-border-radius: 140px 0 0 0;
 }
 
-.select-personas a:first-child span
+.intro .select-personas a:first-child span
 {
     background-position: -84px 0;
     bottom: 9px;
     right: 5px;
 }
 
-.select-personas a:first-child + a
+.intro .select-personas a:first-child + a
 {
     border-radius: 0 140px 0 0;
     -moz-border-radius: 0 140px 0 0;
     -webkit-border-radius: 0 140px 0 0;
 }
 
-.select-personas a:first-child + a span
+.intro .select-personas a:first-child + a span
 {
     background-position: -243px 0;
     bottom: 6px;
     left: 17px;
 }
 
-.select-personas a:first-child + a + a
+.intro .select-personas a:first-child + a + a
 {
     border-radius: 0 0 0 140px;
     -moz-border-radius: 0 0 0 140px;
     -webkit-border-radius: 0 0 0 140px;
 }
 
-.select-personas a:first-child + a + a span
+.intro .select-personas a:first-child + a + a span
 {
     background-position: -164px 0;
     bottom: 33px;
     left: 44px;
 }
 
-.select-personas a:first-child + a + a + a
+.intro .select-personas a:first-child + a + a + a
 {
     border-radius: 0 0 140px 0;
     -moz-border-radius: 0 0 140px 0;
@@ -477,7 +481,7 @@ body > header .select-personas.show
      
 }
 
-.select-personas a:first-child + a + a + a span
+.intro .select-personas a:first-child + a + a + a span
 {
     bottom: 33px;
     left: 16px;
@@ -488,9 +492,9 @@ body > header .select-personas.show
 {
     background-color: #18976f;
     -webkit-transition: background-color .2s ease-in-out;
--moz-transition: background-color .2s ease-in-out;
--o-transition: background-color .2s ease-in-out;
-transition: background-color .2s ease-in-out;
+    -moz-transition: background-color .2s ease-in-out;
+    -o-transition: background-color .2s ease-in-out;
+    transition: background-color .2s ease-in-out;
 }
 
 
