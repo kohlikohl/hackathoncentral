@@ -16,7 +16,7 @@ IndexController.api = function(req,res) {
     {'urn' : '/api/0/personas/:persona', 'description': 'Endpoint for an individual persona and it\'s weighted dataset'},
     {'urn' : '/api/0/personas/:persona/:borough', 'description': 'Endpoint for a particular borough for an individual persona'},
     {'urn' : '/api/0/boroughs', 'description': 'Endpoint for collection of boroughs'},
-    {'urn' : '/api/0/boroughs/:boroughs', 'description': 'Endpoint for an individual borough'}];
+    {'urn' : '/api/0/boroughs/:borough', 'description': 'Endpoint for an individual borough'}];
     res.json({data:docs});
 }
 
