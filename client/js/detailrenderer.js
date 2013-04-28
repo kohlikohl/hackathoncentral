@@ -13,6 +13,7 @@ goog.scope(function () {
         this.renderedOnce = false;
 
         this.nameElement = goog.dom.getElementByClass('js-borough-name');
+        this.averageColourElement = goog.dom.getElementByClass('js-average-colour');
         this.scoreElement = goog.dom.getElementByClass('js-borough-score');
 
         this.locationDetails = goog.dom.getElementByClass('js-location-details');
@@ -47,6 +48,8 @@ goog.scope(function () {
 
         goog.dom.setTextContent(this.nameElement, data.name);
         goog.dom.setTextContent(this.scoreElement, Math.round(data.score * 100));
+
+        this.averageColourElement.style.backgroundColor = this.gradientColor_(Math.round(data.score * 100)).cssColor;
 
         goog.dom.dataset.set(this.crimeChart, 'percent', Math.round(data.aggregates.crime * 100));
         $(this.crimeChart).donutchart({'size': this.chartSize, 'fgColor': this.gradientColor_(Math.round(data.aggregates.crime * 100)).cssColor }).donutchart("animate");
