@@ -9,7 +9,11 @@ goog.scope(function () {
     var _ = app.renderer;
 
     _.Detail = function () {
-        this.chartSize = 90;
+        this.chartConf = {
+            size: 90,
+            bgColor: "red"
+        };
+
         this.renderedOnce = false;
 
         this.nameElement = goog.dom.getElementByClass('js-borough-name');
@@ -26,11 +30,11 @@ goog.scope(function () {
         this.servicesChart = goog.dom.getElementByClass('js-chart-services');
     };
 
-    _.Detail.prototype.reset = function(){
+    _.Detail.prototype.reset = function () {
         console.log(this.locationDetails);
         var fader;
 
-        if(this.locationDetails.style.display === 'none'){
+        if (this.locationDetails.style.display === 'none') {
             return;
         }
 
@@ -42,7 +46,7 @@ goog.scope(function () {
 
     _.Detail.prototype.render = function (data) {
 
-        if(!this.renderedOnce){
+        if (!this.renderedOnce) {
             this.renderOnce_();
         }
 
@@ -51,26 +55,22 @@ goog.scope(function () {
 
         this.averageColourElement.style.backgroundColor = this.gradientColor_(Math.round(data.score * 100)).cssColor;
 
-        goog.dom.dataset.set(this.crimeChart, 'percent', Math.round(data.aggregates.crime * 100));
-        $(this.crimeChart).donutchart({'size': this.chartSize, 'fgColor': this.gradientColor_(Math.round(data.aggregates.crime * 100)).cssColor }).donutchart("animate");
+        this.render_(this.crimeChart, "crime", data);
+        this.render_(this.pollutionChart, "pollution", data);
+        this.render_(this.costChart, "income", data);
+        this.render_(this.employmentChart, "employment", data);
+        this.render_(this.educationChart, "education", data);
+        this.render_(this.servicesChart, "services", data);
 
-        goog.dom.dataset.set(this.pollutionChart, 'percent', Math.round(data.aggregates.pollution * 100));
-        $(this.pollutionChart).donutchart({'size': this.chartSize, 'fgColor': this.gradientColor_(Math.round(data.aggregates.pollution * 100)).cssColor }).donutchart("animate");
-
-        goog.dom.dataset.set(this.costChart, 'percent', Math.round(data.aggregates.income * 100));
-        $(this.costChart).donutchart({'size': this.chartSize, 'fgColor': this.gradientColor_(Math.round(data.aggregates.income * 100)).cssColor }).donutchart("animate");
-
-        goog.dom.dataset.set(this.employmentChart, 'percent', Math.round(data.aggregates.employment * 100));
-        $(this.employmentChart).donutchart({'size': this.chartSize, 'fgColor': this.gradientColor_(Math.round(data.aggregates.employment * 100)).cssColor }).donutchart("animate");
-
-       goog.dom.dataset.set(this.educationChart, 'percent', Math.round(data.aggregates.education * 100));
-       $(this.educationChart).donutchart({'size': this.chartSize, 'fgColor': this.gradientColor_(Math.round(data.aggregates.education * 100)).cssColor }).donutchart("animate");
-
-       goog.dom.dataset.set(this.servicesChart, 'percent', Math.round(data.aggregates.services * 100));
-       $(this.servicesChart).donutchart({'size': this.chartSize, 'fgColor': this.gradientColor_(Math.round(data.aggregates.services * 100)).cssColor }).donutchart("animate");
     };
 
-    _.Detail.prototype.renderOnce_ = function(){
+    _.Detail.prototype.render_ = function(element, property, data){
+        goog.dom.dataset.set(element, 'percent', Math.round(data.aggregates[property] * 100));
+        goog.object.extend(this.chartConf,{'fgColor': this.gradientColor_(Math.round(data.aggregates[property] * 100)).cssColor});
+        $(element).donutchart(this.chartConf).donutchart("animate");
+    };
+
+    _.Detail.prototype.renderOnce_ = function () {
         var fader = new goog.fx.dom.FadeInAndShow(this.locationDetails, 500);
         fader.play();
 
