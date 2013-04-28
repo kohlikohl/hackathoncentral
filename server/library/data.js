@@ -85,7 +85,7 @@ Data.prototype.reduce = function(map,persona,opt_borough) {
     }
 
     if (typeof opt_borough !== 'undefined' && typeof map[opt_borough] !== 'undefined') {
-        return map[opt_sborough];
+        return map[opt_borough];
     }
 
     return map;
