@@ -1,5 +1,6 @@
-var Data = require("../library/data.js");
-var when = require('when');
+var Data = require("../library/data.js"),
+    when = require('when');
+
 
 var IndexController = module.exports = {};
 
