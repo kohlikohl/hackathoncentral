@@ -1,6 +1,7 @@
 {
     "personas": [ 
         {
+            "identifier": 1,
             "name": "Student",
             "weighting": 
             {
@@ -11,6 +12,7 @@
             }
         },
         {
+            "identifier": 2,
             "name": "Young Professional",
             "weighting": 
             {
@@ -21,6 +23,7 @@
             }
         },
         {
+            "identifier": 3,
             "name": "Family",
             "weighting": 
             {
@@ -31,6 +34,7 @@
             }
         },
         {
+            "identifier": 4,
             "name": "Retired",
             "weighting": 
             {
@@ -41,6 +45,7 @@
             }
         },
         {
+            "identifier": 5,
             "name": "OAP",
             "weighting": 
             {
@@ -57,11 +62,34 @@
             "sources": [
                 {
                     "identifier" : "bd1",
-                    "name" : "Buglary in a dwelling (per 1000)",
+                    "name" : "Burglary in a dwelling (per 1000)",
+                    "type" : "min",
                     "urn" : {
                         "host" : "production.webservices.esd.org.uk",
                         "port" : 80,
                         "path" : "/InformPlus/data?query1.metricType=80&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=9SdwgfP4502zHO9JOntj3UfamQ0=",
+                        "method" : "GET"
+                    }
+                },
+                {
+                    "identifier" : "bd2",
+                    "name" : "Theft of a motor vehicle (per 1000)",
+                    "type" : "min",
+                    "urn" : {
+                        "host" : "production.webservices.esd.org.uk",
+                        "port" : 80,
+                        "path": "/InformPlus/data?query1.metricType=81&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=M7luZ12U/MFg+NMBVxhqV894vaY=",
+                        "method" : "GET"
+                    }
+                },
+                {
+                    "identifier" : "bd3",
+                    "name" : "Theft from a motor vehicle (per 1000)",
+                    "type" : "min",
+                    "urn" : {
+                        "host" : "production.webservices.esd.org.uk",
+                        "port" : 80,
+                        "path": "/InformPlus/data?query1.metricType=82&query1.area=AllBoroughInRegion_London&query1.period=latest&ApplicationKey=GoogleHackPPK&Signature=AirlnlWikHVDlWwe8dKHFVfCvkw=",
                         "method" : "GET"
                     }
                 }
@@ -73,6 +101,7 @@
                 {
                     "identifier" : "cte",
                     "name" : "CO2 total emissions",
+                    "type" : "min",
                     "urn" : {
                         "host" : "production.webservices.esd.org.uk",
                         "port" : 80,
@@ -88,6 +117,7 @@
                 {
                     "identifier" : "ter",
                     "name" : "Total employment rate",
+                    "type" : "max",
                     "urn" : {
                         "host" : "production.webservices.esd.org.uk",
                         "port" : 80,
