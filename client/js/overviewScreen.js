@@ -23,7 +23,6 @@ goog.scope(function(){
     goog.inherits(_.OverviewScreen, goog.events.EventTarget);
 
     _.OverviewScreen.prototype.display = function(evt){
-        console.log(evt);
         var xhr = /** @type {goog.net.XhrIo} */ (evt.target);
 
         if(xhr.getStatus() == 200){

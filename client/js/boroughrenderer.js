@@ -1,8 +1,10 @@
 goog.provide("app.renderer.Borough");
 
 goog.require("app.data.london.boroughs");
+goog.require("app.data.map.borough");
 
 goog.require("goog.math");
+goog.require("goog.events.EventHandler");
 
 goog.scope(function () {
     var _ = app.renderer;
@@ -10,18 +12,29 @@ goog.scope(function () {
     _.Borough = function (map, data) {
         this.data = data;
         this.map = map;
+        this.drawnPolygons = [];
+        this.handler = new goog.events.EventHandler();
     };
 
     _.Borough.prototype.render = function () {
-        console.log(this.map, this.data);
-        var data = app.data.london.boroughs.folder;
+        var boroughs = app.data.london.boroughs.folder,
+            boroughMap = app.data.map.borough;
 
-        goog.array.forEach(data, function(element){
-            console.log('a');
-            var polygon = element.polygon,
+        goog.array.forEach(boroughs, function (borough) {
+            var polygon = borough.polygon,
                 coords = [],
                 toDraw = {},
-                random = goog.math.randomInt(100);
+                score,
+                apiMap = goog.array.find(boroughMap, function (element) {
+                    return element.mapIdentifier === borough.id;
+                }),
+                relevantData = goog.object.get(this.data.data, apiMap.apiIdentifier);
+
+            if (!relevantData) {
+                return;
+            }
+
+            score = Math.round(relevantData.score * 100);
 
             goog.array.forEach(polygon, function(element){
                 goog.array.insert(coords, new google.maps.LatLng(element.y, element.x));
@@ -29,18 +42,65 @@ goog.scope(function () {
 
             toDraw = new google.maps.Polygon({
                 paths: coords,
-                strokeColor: this.gradientColor_(random).cssColor,
+                strokeColor: this.gradientColor_(score).cssColor,
                 strokeOpacity: 0.4,
                 strokeWeight: 1,
-                fillColor: this.gradientColor_(random).cssColor,
+                fillColor: this.gradientColor_(score).cssColor,
                 fillOpacity: 0.20
             });
 
             toDraw.setMap(this.map);
+            this.drawnPolygons.push(toDraw);
 
-            return;
+            google.maps.event.addListener(toDraw, 'click', goog.bind(function (evt) {
+                //cheating because it is late
+                this.renderAdditionalData(evt, relevantData, toDraw);
+            }, this));
+
         }, this);
 
+    };
+
+    _.Borough.prototype.getPolygonBounds = function (polygon) {
+        var bounds = new google.maps.LatLngBounds();
+        var paths = polygon.getPaths();
+        var path;
+
+        for (var p = 0; p < paths.getLength(); p++) {
+            path = paths.getAt(p);
+            for (var i = 0; i < path.getLength(); i++) {
+                bounds.extend(path.getAt(i));
+            }
+        }
+
+        return bounds;
+    };
+
+    _.Borough.prototype.renderAdditionalData = function (evt, relevantData, polygon) {
+        console.log(evt, relevantData, polygon);
+        var bounds = this.getPolygonBounds(polygon),
+            options = {
+                strokeOpacity: 0.90,
+                fillOpacity: 0.60
+            };
+
+        this.resetAllPolygons();
+        //polygon.setVisible(true);
+        polygon.setOptions(options);
+
+        this.map.fitBounds(bounds);
+        this.map.setZoom(this.map.getZoom() - 2 );
+    };
+
+    _.Borough.prototype.resetAllPolygons = function(){
+        var options = {
+            strokeOpacity: 0.40,
+            fillOpacity: 0.20
+        };
+
+        goog.array.forEach(this.drawnPolygons, function(element){
+            element.setOptions(options);
+        });
     };
 
     _.Borough.prototype.gradientColor_ = function (percent) {
