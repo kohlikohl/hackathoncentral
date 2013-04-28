@@ -93,6 +93,7 @@ goog.scope(function () {
 
         this.map.fitBounds(bounds);
         this.map.setZoom(this.map.getZoom() - 2 );
+        setTimeout(this.map.panBy(0, 100), 100);
 
         this.detailrenderer.render(relevantData);
     };
