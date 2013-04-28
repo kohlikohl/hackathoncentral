@@ -2,6 +2,7 @@ goog.provide("app.renderer.Borough");
 
 goog.require("app.data.london.boroughs");
 goog.require("app.data.map.borough");
+goog.require("app.renderer.Detail");
 
 goog.require("goog.math");
 goog.require("goog.events.EventHandler");
@@ -13,7 +14,9 @@ goog.scope(function () {
         this.data = data;
         this.map = map;
         this.drawnPolygons = [];
+
         this.handler = new goog.events.EventHandler();
+        this.detailrenderer = new _.Detail();
     };
 
     _.Borough.prototype.render = function () {
@@ -85,11 +88,13 @@ goog.scope(function () {
             };
 
         this.resetAllPolygons();
-        //polygon.setVisible(true);
+
         polygon.setOptions(options);
 
         this.map.fitBounds(bounds);
         this.map.setZoom(this.map.getZoom() - 2 );
+
+        this.detailrenderer.render(relevantData);
     };
 
     _.Borough.prototype.resetAllPolygons = function(){
