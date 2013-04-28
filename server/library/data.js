@@ -35,7 +35,7 @@ Data.prototype.getById = function(resource,id) {
         if (resource[i].identifier == id) return resource[i];
     }
     return false;
-}
+};
 
 Data.prototype.map = function(data) {
     var i, j, k, name, running, count, map = {};
@@ -62,7 +62,7 @@ Data.prototype.map = function(data) {
     }
 
     return map;
-}
+};
 
 Data.prototype.reduce = function(map,persona,opt_borough) {
     var min = {}, max = {};
@@ -74,14 +74,20 @@ Data.prototype.reduce = function(map,persona,opt_borough) {
         running = 0, count = 0;
         for(var factors in map[borough].scores) {
             running += Math.abs(persona.weighting[factors]) * map[borough].scores[factors].reduce(function(a,b){ 
-                return a + b} );
+                return a + b});
             count +=  Math.abs(persona.weighting[factors]) * map[borough].scores[factors].length;
         }
         map[borough].score = running/count;
     }
 
+
+
+    for(var borough in map) {
+    }
+
+
     if (typeof opt_borough !== 'undefined' && typeof map[opt_borough] !== 'undefined') {
-        return map[opt_borough];
+        return map[opt_sborough];
     }
 
     return map;
@@ -133,14 +139,13 @@ Data.prototype.normalise = function(sourceData, persona) {
         if (sourceData[i].type == 'min')  {
             sourceData[i].score = 1 - sourceData[i].score;
         }
-        console.log("Weighting for " + sourceData[i].group + " is " + persona.weighting[sourceData[i].group]);
         if (persona.weighting[sourceData[i].group] < 0)  {
             sourceData[i].score = 1 - sourceData[i].score;
         }
     }
 
     return sourceData;
-}
+};
 
 Data.prototype.loadSource = function(source,datasetName,persona) {
     var deferred = when.defer();
@@ -164,7 +169,7 @@ Data.prototype.loadSource = function(source,datasetName,persona) {
     req.end();
 
     return deferred.promise;
-}
+};
 
 
 Data.prototype.loadDataset = function (dataset,persona) {
