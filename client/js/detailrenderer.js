@@ -31,7 +31,6 @@ goog.scope(function () {
     };
 
     _.Detail.prototype.reset = function () {
-        console.log(this.locationDetails);
         var fader;
 
         if (this.locationDetails.style.display === 'none') {
@@ -53,7 +52,7 @@ goog.scope(function () {
         goog.dom.setTextContent(this.nameElement, data.name);
         goog.dom.setTextContent(this.scoreElement, Math.round(data.score * 100));
 
-        this.averageColourElement.style.backgroundColor = this.gradientColor_(Math.round(data.score * 100)).cssColor;
+        this.averageColourElement.style.backgroundColor = this.gradientColor_(Math.round(data.adjusted * 100)).cssColor;
 
         this.render_(this.crimeChart, "crime", data);
         this.render_(this.pollutionChart, "pollution", data);
