@@ -66,7 +66,7 @@ Data.prototype.map = function(data) {
 };
 
 Data.prototype.reduce = function(map,persona,opt_borough) {
-    var sum, running, count;
+    var sum, running, count, scores = [],i,min = 1, max = 0, range;
     if (typeof persona !== 'undefined') {
         persona = this.getById(config.personas,persona);
     }
@@ -81,7 +81,22 @@ Data.prototype.reduce = function(map,persona,opt_borough) {
             running += Math.abs(persona.weighting[factors]) * sum;
             count +=  Math.abs(persona.weighting[factors]) * map[borough].scores[factors].length;
         }
+        for(i = 0; i < config.boroughs.length; i++) {
+            if (config.boroughs[i].identifier === borough) {
+                map[borough].aggregates.desirability = config.boroughs[i].desirability;
+                running += Math.abs(persona.weighting.desirability) * map[borough].aggregates.desirability;
+                count+= Math.abs(persona.weighting.desirability);
+            }
+        }
         map[borough].score = running/count;
+        if (map[borough].score < min) min = map[borough].score;
+        if (map[borough].score > max) max = map[borough].score;
+    }
+
+    range = max - min;
+
+    for (var borough in map) {
+        map[borough].adjusted = (map[borough].score-min)/range;
     }
 
     if (typeof opt_borough !== 'undefined' && typeof map[opt_borough] !== 'undefined') {
