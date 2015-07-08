@@ -1,17 +1,18 @@
 {
-    "name": "Hackathon",
-    "version": "1.0.0",
-    "private": true,
-    "dependencies": {
-        "express": "3.2.0",
-        "redis": "0.8.3",
-        "hogan-express": "0.3.3",
-        "bower": "1.4.1",
-        "nodemon": "0.7.6",
-        "when": "2.0.1"
-    },
-    "scripts": {
-        "start": "node_modules/nodemon/nodemon.js server/bootstrap.js",
-        "postinstall": "node_modules/bower/bin/bower install"
-    }
+  "name": "Hackathon",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "bower": "1.4.*",
+    "express": "3.2.0",
+    "hogan-express": "0.3.3",
+    "nodemon": "0.7.6",
+    "redis": "0.8.3",
+    "topojson": "^1.6.19",
+    "when": "2.1.*"
+  },
+  "scripts": {
+    "start": "node_modules/nodemon/nodemon.js server/bootstrap.js",
+    "postinstall": "node_modules/bower/bin/bower install"
+  }
 }

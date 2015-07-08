@@ -1,6 +1,13 @@
+'use strict';
+
+/* global goog */
+/* global google */
+/* global app */
+
 goog.provide("app.renderer.Borough");
 
 goog.require("app.data.london.boroughs");
+goog.require("app.data.london.full.boroughs");
 goog.require("app.data.map.borough");
 goog.require("app.renderer.Detail");
 
@@ -16,12 +23,14 @@ goog.scope(function () {
         this.data = {};
         this.map = map;
         this.drawnPolygons = [];
-        this.mapCenter;
+        this.mapCenter = null;
 
         this.handler = new goog.events.EventHandler();
         this.handler.listen(window, goog.events.EventType.RESIZE, goog.bind(this.repositionMap, this));
         
         this.detailrenderer = new _.Detail();
+
+
     };
 
     _.Borough.prototype.render = function (data) {
@@ -30,45 +39,60 @@ goog.scope(function () {
 
         this.data = data;
 
+        var geoJsonObject = topojson.feature(app.data.london.full.boroughs, app.data.london.full.boroughs.objects.x);
+        console.log(geoJsonObject); 
+
+        boroughs = geoJsonObject.features;
+
         goog.array.forEach(boroughs, function (borough) {
-            var polygon = borough.polygon,
+            var polygon = borough.geometry.coordinates[0],
                 coords = [],
                 toDraw = {},
                 score,
                 apiMap = goog.array.find(boroughMap, function (element) {
-                    return element.mapIdentifier === borough.id;
+                    return element.apiIdentifier === borough.id;
                 }),
-                relevantData = goog.object.get(this.data.data, apiMap.apiIdentifier);
+                relevantData = null;
 
-            if (!relevantData) {
-                return;
+            if (!apiMap) {
+                console.log('missing for', borough.properties.name, borough.id);
+            } else {
+                console.log(apiMap);
+                relevantData = goog.object.get(this.data.data, apiMap.apiIdentifier);
             }
 
-            score = Math.round(relevantData.adjusted * 100);
+            if (!relevantData) {
+                console.log(this.data.data);
+                console.log('fooked');
+                return;
+            } else {
+                score = Math.round(relevantData.adjusted * 100);
 
-            goog.array.forEach(polygon, function(element){
-                goog.array.insert(coords, new google.maps.LatLng(element.y, element.x));
-            });
+                goog.array.forEach(polygon, function(element){
+                    goog.array.insert(coords, new google.maps.LatLng(element[1], element[0]));
+                });
 
-            toDraw = new google.maps.Polygon({
-                paths: coords,
-                strokeColor: this.gradientColor_(score).cssColor,
-                strokeOpacity: 0.4,
-                strokeWeight: 1,
-                fillColor: this.gradientColor_(score).cssColor,
-                fillOpacity: 0.20
-            });
+                toDraw = new google.maps.Polygon({
+                    paths: coords,
+                    strokeColor: this.gradientColor_(score).cssColor,
+                    strokeOpacity: 0.4,
+                    strokeWeight: 1,
+                    fillColor: this.gradientColor_(score).cssColor,
+                    fillOpacity: 0.20
+                });
+                console.log(toDraw);
+                toDraw.setMap(this.map);
+                this.drawnPolygons.push(toDraw);
 
-            toDraw.setMap(this.map);
-            this.drawnPolygons.push(toDraw);
+                google.maps.event.addListener(toDraw, 'click', goog.bind(function (evt) {
+                    //cheating because it is late
+                    this.renderAdditionalData(evt, relevantData, toDraw);
+                }, this));
 
-            google.maps.event.addListener(toDraw, 'click', goog.bind(function (evt) {
-                //cheating because it is late
-                this.renderAdditionalData(evt, relevantData, toDraw);
-            }, this));
-
+            }
         }, this);
-
+        
+        this.map.data.forEach(console.log);
     };
 
     _.Borough.prototype.reset = function(){

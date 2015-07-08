@@ -35,6 +35,7 @@ goog.scope(function(){
         var personaContainer = goog.dom.getElementByClass('js-persona-container'),
             fader;
 
+        console.log('display');
         this.boroughRenderer.render(json);
 
         if(personaContainer.style.display !== 'none'){
@@ -45,6 +46,7 @@ goog.scope(function(){
     };
 
     _.OverviewScreen.prototype.reset = function(){
+        console.log('reset');
         this.boroughRenderer.reset();
     };
 
