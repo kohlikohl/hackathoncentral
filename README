@@ -12,3 +12,10 @@ To access the API
  - Run `npm start`
  - Open a browser and go to http://localhost:3000
 
+
+
+#### Getting London Borough GeoJSON
+
+1. Sign up to download https://www.ordnancesurvey.co.uk/business-and-government/products/boundary-line.html
+2. `ogr2ogr -f GeoJSON -where "DESCRIPTIO = 'London Borough'" -t_srs EPSG:4326 london_boroughs_coords.json district_borough_unitary_region.shp`
+3. `topojson -o london_boroughs.topo.json --id-property CODE --properties name=NAME -- london_boroughs_coords.json`
