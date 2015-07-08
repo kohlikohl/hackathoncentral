@@ -1,7 +1,7 @@
 {
     "name": "HackathonCentral",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "dependencies": {
-        "closure"        : "https://github.com/jarib/google-closure-library.git"
+        "closure": "https://github.com/jarib/google-closure-library.git"
     }
 }
